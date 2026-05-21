@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. B. Rama - Academic Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #ebf8ff;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 150px 20px 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+        
+        .sub-title {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* Cards and Lists */
+        .card {
+            background: var(--light-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        ul.academic-list, ol.academic-list {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        ul.academic-list li, ol.academic-list li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        ul.custom-bullet {
+            list-style: none;
+        }
+
+        ul.custom-bullet li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: -1.5rem;
+            top: -6px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .metric-box {
+            background: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .metric-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        /* Scrollable list for long data */
+        .scrollable-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: var(--light-bg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Dr. B. Rama</a>
+            <ul class="nav-links">
+                <li><a href="#about">Profile</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#patents">Patents & Books</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#activities">Activities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Dr. B. RAMA</h1>
+        <h2>Member of Executive Council & Head</h2>
+        <h2>Department of Computer Science, University College</h2>
+        <h2>Kakatiya University, Warangal – 506 009, Telangana State, India</h2>
+        
+        <div class="contact-bar">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:rama.abbidi@gmail.com">rama.abbidi@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>9849579453</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- ABOUT & METRICS SECTION -->
+        <section id="about">
+            <h2 class="section-title">Academic Profile & Overview</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3 class="sub-title">Qualifications</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li><strong>Ph.D. (Computer Science):</strong> Awarded by Sri Padmavathi Mahila Viswa Vidyalayam, Tirupati.</li>
+                        <li><strong>M.Phil. (Computer Science):</strong> Sri Padmavathi Mahila Viswa Vidyalayam, Tirupati.</li>
+                    </ul>
+                    
+                    <h3 class="sub-title">Professional Memberships</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li>Association for Computing Machinery (ACM) - Life time membership</li>
+                        <li>International Association of Engineers (IAENG) - Member Ship Number: 212799</li>
+                        <li>Computer Society of India (CSI) - Life time membership</li>
+                        <li>Indian Society for Technical Education (ISTE) - Life time membership (LM – 135496)</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="sub-title">Citation Scores</h3>
+                    <div class="grid-2" style="margin-bottom: 2rem;">
+                        <div class="metric-box">
+                            <h4>Google Scholar</h4>
+                            <div class="metric-number">503</div>
+                            <p>Citations</p>
+                            <div class="metric-number" style="font-size: 1.5rem; margin-top: 0.5rem;">13</div>
+                            <p>h-index</p>
+                        </div>
+                        <div class="metric-box">
+                            <h4>Scopus</h4>
+                            <div class="metric-number">218</div>
+                            <p>Citations</p>
+                            <div class="metric-number" style="font-size: 1.5rem; margin-top: 0.5rem;">08</div>
+                            <p>h-index</p>
+                        </div>
+                    </div>
+
+                    <h3 class="sub-title">Reviewer Member</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li>International Journal of Electrical and Computer Engineering (IJECE)</li>
+                        <li>Indonesian Journal of Electrical Engineering and Computer Science</li>
+                        <li>Applied Clinical Informatics</li>
+                        <li>International Journal of Artificial Intelligence (IAES)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="sub-title" style="margin-top: 3rem;">At a Glance</h3>
+            <div class="grid-4">
+                <div class="metric-box"><h4>Patents Granted</h4><div class="metric-number">03</div></div>
+                <div class="metric-box"><h4>Patents Filed</h4><div class="metric-number">13</div></div>
+                <div class="metric-box"><h4>Publications</h4><div class="metric-number">89</div></div>
+                <div class="metric-box"><h4>PhDs Awarded</h4><div class="metric-number">10</div></div>
+                <div class="metric-box"><h4>Ongoing PhDs</h4><div class="metric-number">04</div></div>
+                <div class="metric-box"><h4>Intl. Conferences</h4><div class="metric-number">12</div></div>
+                <div class="metric-box"><h4>Workshops (Participant)</h4><div class="metric-number">17</div></div>
+                <div class="metric-box"><h4>Guest Lectures</h4><div class="metric-number">21</div></div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3 class="sub-title">Academic Experience</h3>
+                    <div class="card">
+                        <h3>Associate Professor</h3>
+                        <div class="card-meta">Department of Computer Science, University College, Kakatiya University | May 2010 – Present</div>
+                    </div>
+                    <div class="card">
+                        <h3>Associate Professor</h3>
+                        <div class="card-meta">Vaagdevi College of Engineering, Warangal | Oct 2007 – Apr 2010</div>
+                    </div>
+                    <div class="card">
+                        <h3>Assistant Professor</h3>
+                        <div class="card-meta">Jyothishmathi Institute of Technological Sciences, Karimnagar | Jul 2005 – Oct 2007</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="sub-title">Administrative Experience</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li><strong>Executive Council Member & Head:</strong> Department of Computer Science (18th June 2024 – Present)</li>
+                        <li><strong>Chairperson, Board of Studies:</strong> Computer Science, Kakatiya University (Feb 2020 – Feb 2022 & Oct 2013 – Dec 2015)</li>
+                        <li><strong>Director for Campus Network and Website:</strong> (Sep 2018 – Jan 2022)</li>
+                        <li><strong>Head & Director for Computer Center:</strong> (June 2016 – June 2018)</li>
+                        <li><strong>In charge HOD:</strong> IT Department, Vaagdevi Engineering College, Bollikunta.</li>
+                        <li><strong>Member Convener:</strong> Departmental Committee since 2011.</li>
+                        <li><strong>BOS Member:</strong> Dept of Computer Science, Shathavahana University, Karimnagar.</li>
+                        <li><strong>BOS Member:</strong> Dept of Computer Science, Mahatma Gandhi University, Nalgonda.</li>
+                        <li><strong>BOS Member:</strong> Dept of Computer Science, SR & BGNR Autonomous College, Khammam.</li>
+                        <li><strong>Subject Expert Member (BOS):</strong> Chaithanya Degree and PG College (Autonomous).</li>
+                        <li><strong>Committee Member:</strong> International Conference on Vibration Problem (Dept of Mathematics).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS SECTION -->
+        <section id="achievements">
+            <h2 class="section-title">Awards & Achievements</h2>
+            <ul class="academic-list custom-bullet" style="font-size: 1.1rem;">
+                <li><strong>IRSD Exemplary Teacher Award 2025:</strong> 15th International Conference on Interdisciplinary Research for Sustainable Development 2025 (IRSD 2025) organized by Green ThinkerZ & I2OR in association with Western Sydney University, Jamai Hamdard, GIER, and Elsevier’s Mendeley (June 5, 2025).</li>
+                <li><strong>Associate Fellow:</strong> Telangana Academy of Sciences (TAAS).</li>
+                <li><strong>Fellow Member:</strong> International Institute of Organized Research (I2OR) w.e.f. March 2023.</li>
+                <li><strong>Outstanding Scientist Award:</strong> International Research Awards on Science, Technology and Management (May 14-15, 2022, Chennai), organized by VDGOOD Professional Association.</li>
+                <li><strong>Best Paper Award:</strong> For the paper "A Data mining perspective for forest fire prediction" presented in International Conference.</li>
+            </ul>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2 class="section-title">Funded Projects</h2>
+            <div class="card">
+                <h3>Causal Data Mining Approach to Study the Interrelationship Between cardio vascular Diseases and Renal System Failure</h3>
+                <div class="card-meta">Sanctioned under RUSA 2.0 | Worth 20 Lakhs | Jan 2025 – July 2026</div>
+                <p>Advanced study investigating the inter-relationship between cardiovascular diseases and renal system failure.</p>
+            </div>
+            <div class="card">
+                <h3>Impact of the Beti Bachao Beti Padhao Scheme in Telangana State</h3>
+                <div class="card-meta">Collaboration with Central University of Hyderabad | Worth 11 Lakhs | Jan 2024</div>
+                <p>Focusing on the sociopolitical, legal, and historical environment of women's empowerment in Telangana State.</p>
+            </div>
+        </section>
+
+        <!-- PATENTS & BOOKS SECTION -->
+        <section id="patents">
+            <h2 class="section-title">Patents & Authored Books</h2>
+            
+            <h3 class="sub-title">Granted Patents (3)</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Predictive And Causal Chain Mining To Discover Actionable Knowledge From Stock Markets</h3>
+                    <div class="card-meta">Patent No: 202110707075 | Date: 24-11-2021</div>
+                </div>
+                <div class="card">
+                    <h3>A machine learning and AI-based system for transmitting signals in 6G wireless communication networks</h3>
+                    <div class="card-meta">Patent No: 20 2021 105 968.0 | Date: Jan 13, 2022</div>
+                </div>
+                <div class="card">
+                    <h3>AI Based Device For Content Analysis</h3>
+                    <div class="card-meta">Design Patent No: 490879-001 | Date: Feb 12, 2026</div>
+                </div>
+            </div>
+
+            <h3 class="sub-title">Filed & Pre-Published Patents (13)</h3>
+            <div class="scrollable-list" style="max-height: 300px;">
+                <ol class="academic-list">
+                    <li><strong>An Artificial Intelligence Based System for Screening Learning Dis orders:</strong> App No: 202641032837 (Pub: 24/04/2026)</li>
+                    <li><strong>System And Method for Causal identification of Chronic Kidney Disease Risk Factors:</strong> App No: 202641032838 (Pub: 24/04/2026)</li>
+                    <li><strong>Hybrid Kernel Modelling Predictive Performance For Optimizing The:</strong> App No: 202141011558 (Pub: 16/04/2021)</li>
+                    <li><strong>An Efficient Encryption System For Data Dynamics On Encrypted Data Secured In Cloud And Method Thereof:</strong> App No: 202041006341 (Pub: 21/02/2020)</li>
+                    <li><strong>An Advanced Incremental Association Rule Mining Process In Case Of Data Insertions:</strong> App No: 201941044028 (Pub: 29/11/2019)</li>
+                    <li><strong>An Advanced Incremental Association Rule Mining Process In Case Of Data Deletions:</strong> App No: 201941043678 (Pub: 29/11/2019)</li>
+                    <li><strong>An Advanced Incremental Association Rule Mining Process In Case Of Support Change:</strong> App No: 201941043677 (Pub: 29/11/2019)</li>
+                    <li><strong>An Heuristic Tree Structure Algorithm To Find An Item Using Scaling:</strong> App No: 201941017724 (Pub: 07/06/2019)</li>
+                    <li><strong>A System for Load Balancing In Cloud Computing By Optimized Weighted Round Robin Method:</strong> App No: 201941001488 (Pub: 08/02/2019)</li>
+                    <li><strong>Task Scheduling System For Load Balancing In Cloud Computing Based On User Priority Guidance:</strong> App No: 201841047148 (Pub: 04/01/2019)</li>
+                    <li><strong>Construction of Mean based Divisive Clustering Method:</strong> App No: 201841026128 (Pub: 20/07/2018)</li>
+                    <li><strong>A System and a Method for Load Balancing in Cloud Computing:</strong> App No: 201841026127 (Pub: 20/07/2018)</li>
+                    <li><strong>Optical Character Recognizing (OCR) system to recognize Complex mixed connective conjunct consonant contained words:</strong> App No: 20184106854A (Pub: 25/05/2018)</li>
+                </ol>
+            </div>
+
+            <h3 class="sub-title">Authored Books (4)</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Python Programming with Applications</h3>
+                    <div class="card-meta">Publisher: Quill Tech Publications | Year: 2025 | ISBN: 978-936-786-014-4</div>
+                </div>
+                <div class="card">
+                    <h3>C AND DATA STRUCTURES</h3>
+                    <div class="card-meta">Publisher: Quill Tech Publications | Year: 2021 | ISBN: 978-93-6786-719-8</div>
+                </div>
+                <div class="card">
+                    <h3>Programming with ‘C’</h3>
+                    <div class="card-meta">Publisher: Professional Books Publisher | Year: 2017 | ISBN: 9789385506284</div>
+                </div>
+                <div class="card">
+                    <h3>Current Research Advances in Computer Sciences</h3>
+                    <div class="card-meta">Publisher: BSP Publishers | Role: Editor | Year: 2017 | ISBN: 978-93-5230-183-6</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS SECTION -->
+        <section id="publications">
+            <h2 class="section-title">Research Publications</h2>
+            <p style="margin-bottom: 1rem;"><strong>Total Publications: 89+ (Including National, International, IEEE, and Springer Proceedings)</strong></p>
+            
+            <div class="scrollable-list">
+                <h3 class="sub-title" style="margin-top: 0;">Journal & Conference Papers</h3>
+                <ol class="academic-list">
+                    <li>P. Kiran Kumar, B RAMA "A Research Travelogue on Image Classification on Brain Tumor", Advances in Computer Science Research by Atlantis Press, pp: 41-52, Nov-2025.</li>
+                    <li>Praneeth Reddy, Abhijeet Chandra, B RAMA "Machine Learning-Based Prediction of US Stock Market Direction Leveraging Volatility Indices", IEEE Global Conference on Wireless Computing Networking, Nov-2025.</li>
+                    <li>B.Anitha, B RAMA "A Research Travelogue on Text Classification", Advances in Computer Science Research by Atlantis Press, pp: 532-541, Nov-2025.</li>
+                    <li>P Kiran, B RAMA "A Research Travelogue on Image Classification", Advances in Computer Science Research by Atlantis Press, Nov-2025.</li>
+                    <li>P. Kiran Kumar, B RAMA "Classification Model for Benign and malignant tumor cases in brain tumor and lung cancer", AIP Conference Proceedings, Oct-2025.</li>
+                    <li>P. PRAVEEN, Mohammed Ali SHAIK, B. RAMA, V. ANITHA "An Optimistic Approach to Share Private Health Records Using Blockchain Technology", Blockchain Applications in Healthcare, Vol 1, Jun-2023, WILEY ISTE.</li>
+                    <li>B Rama, P Praveen, Mohammed Ali shaik "Machine Learning Model to Detect Parkinson’s Disease Using MRI data", IEEE ICSCNA 2023.</li>
+                    <li>Jothi Prabha, Prabharan Sengodan, Natesan Venkateswaran, S. Abijah Roseline, B.Rama "Radial basis function networks-based resource-aware offloading video analytics in mobile edge computing", Wireless Networks, Springer Nature, June-2023.</li>
+                    <li>Jothi Prabha, Rama Abbidi, E Vishnu Priya Reddy, L tarasvi, "Image-based Detection of Dyslexic Readers from 2-D Scan path using an Enhanced Deep Transfer Learning Paradigm", IEEE Digital Image Computing: Techniques and Applications, Sydney, Nov-Dec 2022.</li>
+                    <li>Sallaudin, Rama B, "Extended informative local binary patterns: A model for image feature extraction", Lecture Notes in Networks and Systems, Springer, Feb-2022.</li>
+                    <li>Nagaparameswarachary N, RAMA BoddiReddy, "A Hybrid Application Model to Improve the Accuracy by Using Naïve Bayes Algorithm", Advances in Intelligence Systems and Computing, Springer, 2021.</li>
+                    <li>Nagaparameswarachary N, RAMA BoddiReddy, "To Reduce Error Rate and improve performance of Classification Algorithm", IOP Conference Series, ICRAEM-2020.</li>
+                    <li>Thoyazan Sultan Algaradi, RAMA B, "An Authenticated Key Management Scheme for Securing Big Data Environment", IJECE, June-2022.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "A Heuristic ACO Based Technique for Balancing the Load in Cloud Computing", IJSTR, March-2020.</li>
+                    <li>T.Rajani Devi, RAMA BoddiReddy, "Software Reusability Development through NFL Approach for Identifying Security based Inner Relationships of Affecting Factors", IJECE, Feb-2020.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "An Optimized Clustering Method to Create Clusters Efficiently", Journal Of Mechanics Of Continua And Mathematical Sciences, Jan-2020.</li>
+                    <li>Ramesh D, RAMA Boddireddy, "Flexible and Efficient Encryption Scheme for Data Dynamics on Encrypted Outsourced Data to Public Cloud", IJSTR, Oct-2019.</li>
+                    <li>Satyavati N, RAMA Boddireddy, "A Case Study-Incremental Mining Algorithm On Library Transactional Database", IJITEE, Aug-2019.</li>
+                    <li>Ramesh D, RAMA Boddireddy, "A Light Weight Cryptographic Technique for Secure Outsourcing and Retrieval of Data in Cloud Computing", IJITEE, Aug-2019.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Present State-of-the-Art of Association Rule Mining Algorithms", IJEAT, Oct-2019.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Present State-of-The-ART of Dynamic Association Rule Mining Algorithms", IJITEE, Nov-2019.</li>
+                    <li>Thoyazan Sultan Algaradi, RAMA BoddiReddy, "A Novel Blowfish based-Algorithm to improve Encryption Performance in Hadoop Using MapReduce", IJSTR, Nov-2019.</li>
+                    <li>Harchana Bhupati, RAMA BoddiReddy, "A methodology for Discovering Upstream and Downstream Causal Relationships in Stock Market", IJITEE, Aug-2019.</li>
+                    <li>Thoyazan Sultan Algaradi, RAMA BoddiReddy, "Static Knowledge-Based Authentication Mechanism for Hadoop Distributed Platform using Kerberos", IJASEIT, Aug-2019.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "Optimized Weighted Round Robin Approach for Load Balancing in Cloud Computing", Journal of Computational and Theoretical Nanoscience, 2019.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "A Framework for User Priority Guidance based Scheduling for Load Balancing in Cloud Computing", IJSSST, Nov-2018.</li>
+                    <li>Ramesh D, RAMA BoddiReddy, "Secure Privacy Implications for Clients and End-users through Key Assortment Crypto Techniques Implicated Algorithm", IJECE, Sep-2018.</li>
+                    <li>Bala Krishna E, RAMA BoddiReddy, Nagaraju A, "Mining of Negative Association Rules using improved frequent pattern tree", IJPAM, June-2018.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Research Travelogue-Performance Evaluation Of Index Support Item Set Mining Algorithms", IJPAM, June-2018.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "Improving Efficiency And Effectiveness Of Hierarchical Clustering", IJARCS, March-April 2018.</li>
+                    <li>Rajani Devi, RAMA BoddiReddy, "Fuzzy Logic Control Neural Network Hybrid System for Identification, Classification of Software Reusability Components...", IJET, 2018.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Mixed Conjunct Consonants Recognition by using Soft Computing based FNHS through NI-Vision Assistant", IJAER, 2017.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "A Virtual Machine Based Load Balancing Algorithm for Cloud Computing", IJPAM, Dec-2017.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "An Efficient Smart Search Using R Tree on Spatial Data", JARDCS, July-2017.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "An Agglomerative Clustering Method for Solving Vehicle Routing Problem", IJERCSE, Nov-2017.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "A k-means Clustering Algorithm on Numeric Data", IJPAM, Nov-2017.</li>
+                    <li>Praveen P, Mounika, RAMA BoddiReddy, "An Efficient Cache Support Path Computation Model For Road Maps", IJARCS, July-Aug-2017.</li>
+                    <li>Ramesh D, RAMA BoddiReddy, "Cloud Computing – Key Hashing Cryptographic Implication based Algorithm for Service Provider based Encryption and Decryption", IJCTT, July-2017.</li>
+                    <li>Praveen P, RAMA BoddiReddy, Uma Dulhare, "A study on Monothetic Divisive Hierarchical Clustering Method", IJASTEMS, March-2017.</li>
+                    <li>Nagaparameswarachary N, RAMA BoddiReddy, "A Survey on Comparative Analysis of Decision Tree Algorithms in Data Mining", IJASTEMS, March-2017.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "Analysis of Different Load Balancing Techniques in Cloud", IJASTEMS, March-2017.</li>
+                    <li>Santosh Hinge, RAMA BoddiReddy, "Comparative Analysis of Soft Computing Hybrid Intellectual System Implications for Salvation of Machine Learning based Complex Problems", IJASTEMS, March-2017.</li>
+                    <li>Praveen P, RAMA BoddiReddy, Jayanth Babu Ch, "Data Mining Tool for Banking Sector", IJAR, Jan-2017.</li>
+                    <li>Rajani Devi, Rama BoddiReddy, "Creation and Maintenance of Reuse Repository for Retrieval of Assets", IJIRSET, April-2016.</li>
+                    <li>Ramesh D, RAMA BoddiReddy, "A Survey on Security Issues in Cloud Computing", IJIRSET, Oct-2016.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "A study – Load Balancing techniques in the cloud computing", IJIRSET, Sep-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Optical Character Recognition (OCR)- Decision Making State and Identification of Telugu Hand Written Touching Conjuct Consonants...", IAET-2016.</li>
+                    <li>Nagaparameswara Chary N, RAMA BoddiReddy, "Analysis of Classification Technique Algorithms in Data mining-A Review", IJCSE, Jun-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "OCR-the 3 layered approach for decision Making state and identification of Telugu Hand written and printed consonants...", IJAIA, May-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "OCR-The 3 Layered Approach For Classification And Identification Of Telugu Hand Written Mixed Consonants...", AIFZ 2016.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "A parallel Study on Data mining techniques for clustering to use weather data set", IJIRCCE, April-2016.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "Data Extracting for Entrepreneurial opportunities by using Clustering methods", ICNGE3, March-2016.</li>
+                    <li>Harchana Bhupati, RAMA BoddiReddy, "Study of Causal Data Mining with Comparison of Its Algorithms", IJSRE, March-2016.</li>
+                    <li>Rajani Devi, RAMA BoddiReddy, "Benefits of Software Reuse", FTESHP-16, Jan-2016.</li>
+                    <li>Bala Krishna E, RAMA BoddiReddy, Nagaraju A, "A Survey on Effective Mining of Negative Association Rules from Huge Databases", IJCSE, Sep-2015.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Dynamically updating association rules :present state-of-the-art of index support for frequent item set mining", IJIRSET, July-2015.</li>
+                    <li>Laxman Naik, Manjula B, Rama Boddireddy, "Enhancement of entrepreneurial skill for all adult Indians through e-learning", ICNGE, March-2014.</li>
+                    <li>Praveen P, Ramesh J, RAMA BoddiReddy, "Experimental Survey on Data Mining Techniques for Association rule mining", IJARCSSE, Feb-2014.</li>
+                    <li>Laxman Naik, Sridhara Murthy, Rama Boddireddy, Manjula B, "Secure Authentication Scheme for Mobile Ad Hoc Networks", IJMAN, Feb-2012.</li>
+                    <li>Srinivasa Rao Ch, RAMA BoddiReddy, Pavan Kumar D, "Distributed Firewall Design Concept Based On LAN", IJAER, Dec-2011.</li>
+                    <li>Srinivasa Rao Ch, RAMA BoddiReddy, "Firewall policy management through sliding window filtering method using data mining techniques", IJCSES, 2011.</li>
+                    <li>RAMA BoddiReddy, Jayasree Reddy P, Salim Jiwani, "A Survey on clustering Current status and challenging issues", IJCSE, 2010.</li>
+                    <li>Salim Jiwani, RAMA BoddiReddy, Mruthyumjaya Rao, "A Data mining perspective for forest fire prediction", IT & Real World Problems, 2009.</li>
+                    <li>RAMA BoddiReddy, Saleem Jiwani, Mruthyumjaya Rao, "A Data Mining Approach to Assess Impact of various attributes on the Forest fire", NCISC, 2009.</li>
+                    <li>Suresh Lal B, RAMA BoddiReddy, "E-Governance and Rural Development in India", Dec-2005.</li>
+                    <li>Usha Rani M, Sudha T, RAMA BoddiReddy, "Knowledge Based System Development for the Health Assessment- HAXS", Bio-Science Research Bulletin, July-Dec-2005.</li>
+                    <li>RAMA BoddiReddy, Sudha T, Usha Rani M, "Evaluation of XMR – The Expert System on Mental Retardation", Bio-Science Research Bulletin, July-Dec-2005.</li>
+                </ol>
+
+                <h3 class="sub-title">Papers Published in IEEE Conference (IEEE Xplore)</h3>
+                <ol class="academic-list">
+                    <li>Thoyazan Sultan Ali Algaradi, RAMA BoddiReddy, "Big Data Security: A Progress Study of current user authentication Schemes", iCATccT 2018.</li>
+                    <li>Rajani Devi, RAMA BoddiReddy, "Comparative Exploration and Reliability Inferences of Component based Software Reusability System", IEEE iCATccT 2018.</li>
+                    <li>RAMA BoddiReddy, Praveen P, Thanupriya Chowdary, Harish, "A Study on Causal Discovery with PC Algorithm", IEEE ICTUS 2017, Dubai.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "OCR- Mirror Image Reflection Approach: Document Back side Character Recognition by using Neural Fuzzy Hybrid System", IEEE IACC-2017.</li>
+                    <li>Harchana Bhupati, RAMA BoddiReddy, "Causal Rule Mining for Knowledge Discovery from Databases", IEEE ICICCS-2017.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "An Advanced Algorithm for Load Balancing in Cloud Computing using Fuzzy Technique", IEEE ICICCS-2017.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "Simulation of Optimized Load Balancing and User Job Scheduling Using CloudSim", IEEE RTEICT-2017.</li>
+                    <li>Ramesh D, RAMA BoddiReddy, "Industrial Organizations Based Data Deployment Inference Techniques and Service Models in Cloud Computing", IEEE ICTPACT-2017.</li>
+                    <li>Venkateswarlu Velde, RAMA BoddiReddy, "An Improved Ant Colony Optimization Based Approach for Load Balancing in Cloud Computing", IEEE ICTPACT-2017.</li>
+                    <li>Rajani Devi, RAMA BoddiReddy, "Designing software Reuse Repository Through Intelligent Classification for Effective Search and Retrieval Mechanism", IEEE AEEICB17.</li>
+                    <li>Harchana Bhupati, RAMA BoddiReddy, "A Novel Frame work for stock Trading Analysis Using Casual Relationship Mining", IEEE AEEICB17.</li>
+                    <li>Praveen P, RAMA BoddiReddy, Sampath Kumar T, "An Efficient Clustering Algorithm of Minimal Spanning Tree", IEEE AEEICB17.</li>
+                    <li>Praveen P, Jayanth Babu Ch, RAMA BoddiReddy, "Big Data Environment for Geospatial Data Analysis", IEEE ICCES2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Compound Bayesian Decision Making Approach with Negative Input Image based on Neural Fuzzy logic inference rules", 1st IEEE ICCMT-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Comparative study with analysis of OCR Algorithms and Invention Analysis of character Recognition Approached methodologies", IEEE ICPEICES-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Neural Fuzzy Closed Hybrid System for Classification, Identification of mixed connective consonants and symbols with Layered methodology", IEEE ICPEICES-2016.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "An Empirical Comparison of Clustering using Hierarchical methods and K-means", IEEE AEEICB-2016.</li>
+                    <li>Bala Krishna E, RAMA BoddiReddy, NagaRaju A, "Mining of Negative Association Rules using Improved Frequent Pattern Tree", IEEE ICCCT2014.</li>
+                    <li>Jayasree Reddy P, RAMA BoddiReddy, Swamy G, "A new approach for web mining", IEEE ICCMS JAN-2011.</li>
+                </ol>
+
+                <h3 class="sub-title">Papers Published in Springer Conference</h3>
+                <ol class="academic-list">
+                    <li>Bala Krishna E, RAMA BoddiReddy, Nagaraju A, "Mining of Negative Association Rules", AICC-2018, Springer.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Research Travelogue- Performance Evaluation of Index Support Item set Mining Algorithms", AICC-2018, Springer.</li>
+                    <li>Bala Krishna E, RAMA BoddiReddy, Nagaraju A, "Efficient Mining of Negative Association Rules using Frequent Item Set Mining", Springer AISC, ICCII-2017.</li>
+                    <li>Bala Krishna E, RAMA BoddiReddy, Nagaraju A, "Performance of Negative Association Rule Mining using Improved Frequent Pattern Tree", Springer AISC, ICCII-2017.</li>
+                    <li>Satyavathi N, RAMA BoddiReddy, Nagaraju A, "Incremental Updating of mined Association Rules for Reflecting Record Insertions", Springer ICCII-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "OCR- Assessment of Proposed Methodology Implications and Invention Outcomes with Graphical Representation Algorithmic Flow", Springer ICACIE-2016.</li>
+                    <li>Praveen P, RAMA BoddiReddy, "A Novel approach to Improve the performance of divisive clustering using BST", Springer AISC, IC3T 2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Five Layered-Neural Fuzzy Closed Loop Hybrid Control System with Compound Bayesian Decision Making Process for Classification cum Identification of Mixed Connective Conjunct Consonants and Numerals", Springer IC4S 2016.</li>
+                    <li>Ramesh D, RAMA BoddiReddy, "Implications of Security issues in cloud Computing", 4th Springer International Conference, July-2016.</li>
+                    <li>Santhosh Hinge, RAMA BoddiReddy, "Innovation of OCR Algorithms and Result-Oriented Comprehensive Study...", Springer Nature ERCICA-2016.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ACTIVITIES SECTION -->
+        <section id="activities">
+            <h2 class="section-title">Professional Activities</h2>
+
+            <div class="grid-2">
+                <div>
+                    <h3 class="sub-title">Training Programs Conducted</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li>Five day workshop on “Inflibnet Regional Training Programme on Library Automation” (May 4-8, 2026).</li>
+                        <li>One week Online “NEP Orientation & Sensitization Programme” in Collaboration with S.G.T.B. Khalsa College (Dec 15-24, 2025).</li>
+                        <li>Two-week Incentive Training Program for NCC JAWANS from Excel to Power BI (Jan 22-Feb 4, 2025).</li>
+                        <li>Ten days online FDP on “Artificial Intelligence in Internet of Things (AIOT)” (July 2022, NITW).</li>
+                        <li>UGC Sponsored National Workshop on “Design and Analysis of Algorithms” (Dec 29-30, 2017).</li>
+                        <li>UGC Sponsored National Conference on “Current Research Advances in Computer Sciences CRACS-17” (Mar 17-18, 2017).</li>
+                        <li>Two-day workshop on “Research Methodologies and Issues in Computer Science and IT” (Mar 27-28, 2014).</li>
+                    </ul>
+
+                    <h3 class="sub-title">Guest Lectures Delivered</h3>
+                    <div class="scrollable-list" style="max-height: 250px;">
+                        <ul class="academic-list custom-bullet">
+                            <li>"Future Prospects and A technologies in Computer Science" Pingle Govt College (02-04-2026)</li>
+                            <li>"AI-Driven Transformation: Technologies Defining Future" Singareni Women’s College (9-12-2025)</li>
+                            <li>"A Bird Eye view on Artificial Intelligence" Social Welfare Degree College, Eturnagaram (Mar 2025)</li>
+                            <li>"A Bird Eye View on emerging Trends in computer Science" Telangana Social Welfare Degree College (Apr 2024)</li>
+                            <li>"Unsupervised Learning" UGC-HRDC, JNTUH (Dec 2022)</li>
+                            <li>"Haarcascade for Face Detection" EICT Academy NITW (Aug 2022)</li>
+                            <li>"Integration of AI in IoT for Agri Sector" EICT Academy NITW (July 2022)</li>
+                            <li>"Face Recognition by Haarcascade algorithm using OpenCV" EICT Academy NITW (June 2022)</li>
+                            <li>"Fundamentals of Machine learning Algorithms" (June 2021)</li>
+                            <li>Keynote on Web Designing, Nishitha Degree College (Oct 2016)</li>
+                            <li>Emerging Trends in IT, Nalanda Degree College (Jan 2015)</li>
+                            <li>DBMS, Aurora Degree and PG College (Dec 2014)</li>
+                            <li>"Data mining and Big Data Analysis", Singareni Collieries Women’s College (Nov 2014)</li>
+                            <li>National Educational Day Chief Guest, Rahman’s College of Education (Nov 2014)</li>
+                            <li>"Graduate Programming in C-Language", CKM College (Oct 2014)</li>
+                            <li>WOMEN IN MOZILLA Chief Guest, Jayamuki Institute (July 2014)</li>
+                            <li>Programming Concepts, UCETW, Kakatiya University (Mar 2014)</li>
+                            <li>Creation and Access of Data Base, Master of library info Sciences, KU (Mar 2014)</li>
+                            <li>Emerging Trends in Data Processing, Telangana University (Mar 2014)</li>
+                            <li>Two Week Computer Training for Non Teaching Staff, KU (Aug-Sep 2013)</li>
+                            <li>Computer Training for women students, Dept of CS, KU.</li>
+                            <li>"Structured Programming vs Object Oriented Programming", ASM College (Feb 2013)</li>
+                            <li>"Applications of Computers in Biology and Bioinformatics", Dept of Zoology, KU (Oct 2010)</li>
+                            <li>Artificial Intelligence, UPGC Godavarikani (Dec 2010)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="sub-title">Conferences Attended</h3>
+                    <ul class="academic-list custom-bullet">
+                        <li>IEEE ICTUS 2017 (Dubai, UAE)</li>
+                        <li>IEEE ICICCS-2017 (Madurai, India)</li>
+                        <li>IEEE AEEICB17 (2017)</li>
+                        <li>Springer IC3T (Vijayawada, 2016)</li>
+                        <li>IEEE ICCES2016 (Coimbatore, 2016)</li>
+                        <li>ICNGE3 (Hanamkonda, 2016)</li>
+                        <li>IEEE AEEICB-2016</li>
+                        <li>FTESHP-16 (2016)</li>
+                        <li>ICNGE2 (Hanamkonda, 2014)</li>
+                        <li>Information Technology and Real World Problems (2009 & 2008)</li>
+                        <li>NCISC (Tirupati, 2009)</li>
+                    </ul>
+
+                    <h3 class="sub-title">Workshops Attended</h3>
+                    <div class="scrollable-list" style="max-height: 250px;">
+                        <ul class="academic-list custom-bullet">
+                            <li>NPTEL Course on Foundation of Cloud IoT Edge ML (Feb-Apr 2025)</li>
+                            <li>FDP on Recent Research Trends and Application and Machine Learning (NITW, 2022)</li>
+                            <li>FDP on Artificial Intelligence in Internet of Things (NITW, 2022)</li>
+                            <li>FDP on AI and ML for Biomedical Signal and Image Analysis (NITW, 2022)</li>
+                            <li>Short-term Course on AI and ML (2021)</li>
+                            <li>Data Science Using Python, NSIC (2021)</li>
+                            <li>FDP on PHP and MySQL, JNTUH (2021)</li>
+                            <li>NPTEL Course on Python for Data Science (2019)</li>
+                            <li>Refresher Course on Soft skills, Osmania University (2019)</li>
+                            <li>Seminar on Food Security for Women and Children, Kakatiya University (2016)</li>
+                            <li>FDP on Data Base Security, NITW (2016)</li>
+                            <li>Workshop on Emerging Trends in IT and Applications (2014)</li>
+                            <li>Workshop on Emerging Trends in Data Processing, Telangana Univ (2014)</li>
+                            <li>Workshop on SPSS, Kakatiya University (2014)</li>
+                            <li>Refresher Course on Cryptography and Network Security, JNTUH (2013)</li>
+                            <li>Workshop on Capacity building for Women managers, ASM College (2013)</li>
+                            <li>30th orientation Course, Osmania University (2012)</li>
+                            <li>Workshop on In Pursuit of Excellence in Engineering Education, WIPRO (2009)</li>
+                            <li>Mission10X workshop, WIPRO (2009)</li>
+                            <li>FDP Workshop on Neural Networks (2009)</li>
+                            <li>FDP Workshop on Multimedia and Java Struts (2008)</li>
+                            <li>Open Solaris Programmer approach, NITW</li>
+                            <li>FDP Workshop on Data Mining (2008)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dr. B. Rama. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
