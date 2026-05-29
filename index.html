@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. B. Rama | Academic Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #0f2044;
+    --accent: #c8972a;
+    --gold-light: #e8b84b;
+    --teal: #1a7a8a;
+    --teal-light: #22a4b8;
+    --cream: #f9f5ee;
+    --muted: #8a9bb5;
+    --white: #ffffff;
+    --text: #e4eaf5;
+    --border: rgba(200,151,42,0.25);
+    --card-bg: rgba(15,32,68,0.85);
+    --card-border: rgba(200,151,42,0.18);
+    --section-title-color: #c8972a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── STARS BACKGROUND ── */
+  .stars {
+    position: fixed; inset:0;
+    background: radial-gradient(ellipse at 20% 30%, #0e2a50 0%, #0a1628 50%, #050d1a 100%);
+    z-index: -2;
+  }
+  .stars::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(200,151,42,0.08) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px, 40px 40px;
+    background-position: 0 0, 20px 20px;
+    z-index: -1;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display:flex; gap: 1.8rem; list-style:none; }
+  .nav-links a {
+    color: var(--muted); text-decoration:none;
+    font-size:0.82rem; font-weight:500; letter-spacing:0.07em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HAMBURGER (mobile) ── */
+  .hamburger { display:none; cursor:pointer; flex-direction:column; gap:5px; }
+  .hamburger span { width:24px; height:2px; background:var(--accent); display:block; border-radius:2px; transition:all 0.3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 2rem 60px;
+    position: relative;
+  }
+  .hero::after {
+    content:'';
+    position:absolute; bottom:0; left:0; right:0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--navy));
+  }
+  .hero-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,151,42,0.12); border: 1px solid var(--border);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 0.78rem; font-weight:600; letter-spacing:0.1em;
+    color: var(--accent); text-transform:uppercase;
+    margin-bottom: 1.2rem;
+    animation: fadeInUp 0.7s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    animation: fadeInUp 0.7s 0.1s ease both;
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-dept {
+    font-size: 1.05rem; color: var(--teal-light); font-weight:500;
+    margin-bottom: 1.2rem;
+    animation: fadeInUp 0.7s 0.2s ease both;
+  }
+  .hero-info {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.9;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.7s 0.3s ease both;
+  }
+  .hero-info strong { color: var(--text); }
+  .hero-contacts {
+    display: flex; flex-wrap:wrap; gap: 14px;
+    animation: fadeInUp 0.7s 0.4s ease both;
+  }
+  .contact-btn {
+    display: inline-flex; align-items:center; gap:8px;
+    padding: 10px 22px; border-radius: 8px;
+    font-size:0.84rem; font-weight:600; text-decoration:none;
+    transition: all 0.25s;
+  }
+  .contact-btn.primary {
+    background: var(--accent); color: var(--navy);
+  }
+  .contact-btn.primary:hover { background: var(--gold-light); transform:translateY(-2px); }
+  .contact-btn.secondary {
+    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .contact-btn.secondary:hover { background: rgba(200,151,42,0.1); transform:translateY(-2px); }
+
+  /* HERO STATS CARD */
+  .hero-stats {
+    animation: fadeInRight 0.9s 0.3s ease both;
+  }
+  .stats-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,151,42,0.1);
+  }
+  .stats-card-title {
+    font-family:'Playfair Display',serif; font-size:1rem;
+    color: var(--accent); margin-bottom:1.5rem;
+    padding-bottom: 0.8rem; border-bottom: 1px solid var(--border);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  }
+  .stat-item {
+    text-align:center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,151,42,0.1);
+    border-radius: 12px;
+    padding: 1rem 0.8rem;
+    transition: all 0.25s;
+  }
+  .stat-item:hover { background: rgba(200,151,42,0.08); transform:translateY(-2px); }
+  .stat-number {
+    font-family:'Playfair Display',serif;
+    font-size: 2rem; font-weight:900;
+    color: var(--accent); line-height:1;
+  }
+  .stat-label { font-size:0.73rem; color:var(--muted); margin-top:4px; font-weight:500; }
+
+  .citation-row {
+    margin-top: 1.2rem;
+    background: rgba(26,122,138,0.12);
+    border: 1px solid rgba(26,122,138,0.3);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+  }
+  .cit-col { font-size:0.8rem; }
+  .cit-col strong { color: var(--teal-light); display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:2px; }
+  .cit-col span { color: var(--text); font-weight:500; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 2rem; }
+  .container { max-width: 1300px; margin: 0 auto; }
+
+  .section-header { margin-bottom: 3rem; }
+  .section-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.72rem; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color: var(--accent); margin-bottom:0.7rem;
+  }
+  .section-tag::before { content:''; width:24px; height:2px; background:var(--accent); display:block; }
+  .section-title {
+    font-family:'Playfair Display',serif;
+    font-size: clamp(1.8rem,3vw,2.6rem);
+    font-weight:700; color:var(--white);
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position:relative; padding-left: 2.5rem; }
+  .timeline::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:2px; background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .tl-item {
+    position:relative; margin-bottom: 2.5rem;
+    padding: 1.5rem 1.8rem;
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius: 14px; backdrop-filter:blur(10px);
+    transition: all 0.3s;
+  }
+  .tl-item:hover { border-color: rgba(200,151,42,0.4); transform:translateX(4px); }
+  .tl-item::before {
+    content:''; position:absolute; left:-2.56rem; top:1.7rem;
+    width:14px; height:14px; border-radius:50%;
+    background: var(--accent); border:3px solid var(--navy);
+    box-shadow: 0 0 0 4px rgba(200,151,42,0.2);
+  }
+  .tl-period {
+    font-size:0.76rem; font-weight:700; color: var(--accent);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;
+  }
+  .tl-role {
+    font-size:1.05rem; font-weight:600; color:var(--white); margin-bottom:4px;
+  }
+  .tl-org { font-size:0.88rem; color:var(--teal-light); }
+
+  /* ── QUALIFICATION CARDS ── */
+  .qual-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; }
+  .qual-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:14px; padding:1.8rem;
+    display:flex; gap:1.2rem; align-items:flex-start;
+    transition:all 0.3s;
+  }
+  .qual-card:hover { border-color:rgba(200,151,42,0.4); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .qual-icon {
+    width:44px; height:44px; border-radius:10px;
+    background: rgba(200,151,42,0.15); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; flex-shrink:0;
+  }
+  .qual-degree { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:4px; }
+  .qual-field { font-size:0.84rem; color:var(--teal-light); }
+  .qual-uni { font-size:0.8rem; color:var(--muted); margin-top:4px; }
+
+  /* ── ACHIEVEMENTS TABLE ── */
+  .achievements-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:1.2rem;
+  }
+  .ach-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:14px; padding:1.5rem 1.2rem; text-align:center;
+    transition:all 0.3s; cursor:default;
+  }
+  .ach-card:hover { border-color:rgba(200,151,42,0.5); transform:translateY(-3px); background:rgba(15,32,68,0.95); }
+  .ach-num {
+    font-family:'Playfair Display',serif;
+    font-size:2.2rem; font-weight:900; color:var(--accent); line-height:1;
+  }
+  .ach-label { font-size:0.8rem; color:var(--muted); margin-top:6px; font-weight:500; line-height:1.4; }
+
+  /* ── PATENTS ── */
+  .patents-container { display:grid; gap:1.4rem; }
+  .patent-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:14px; padding:1.5rem 1.8rem;
+    display:flex; gap:1.4rem; align-items:flex-start;
+    transition:all 0.3s;
+  }
+  .patent-card:hover { border-color:rgba(200,151,42,0.4); transform:translateY(-2px); }
+  .patent-badge {
+    display:inline-flex; align-items:center;
+    padding:3px 10px; border-radius:6px;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; margin-bottom:6px; white-space:nowrap;
+  }
+  .badge-granted { background:rgba(34,164,184,0.15); color:var(--teal-light); border:1px solid rgba(34,164,184,0.3); }
+  .badge-filed { background:rgba(200,151,42,0.12); color:var(--accent); border:1px solid var(--border); }
+  .patent-num { font-size:0.7rem; color:var(--muted); margin-bottom:2px; }
+  .patent-title { font-size:0.97rem; font-weight:600; color:var(--white); line-height:1.5; }
+  .patent-date { font-size:0.78rem; color:var(--muted); margin-top:6px; }
+  .patent-link {
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:0.75rem; color:var(--teal-light); text-decoration:none;
+    margin-top:8px; transition:color 0.2s;
+  }
+  .patent-link:hover { color:var(--gold-light); }
+
+  /* ── BOOKS ── */
+  .books-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem; }
+  .book-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:14px; padding:1.8rem;
+    transition:all 0.3s; position:relative; overflow:hidden;
+  }
+  .book-card::before {
+    content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+    background: linear-gradient(to bottom, var(--accent), var(--teal));
+  }
+  .book-card:hover { border-color:rgba(200,151,42,0.4); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+  .book-year { font-size:0.72rem; color:var(--accent); font-weight:700; letter-spacing:0.1em; margin-bottom:6px; }
+  .book-title { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.4; }
+  .book-role { font-size:0.75rem; padding:2px 10px; border-radius:4px; background:rgba(200,151,42,0.12); color:var(--accent); border:1px solid var(--border); display:inline-block; margin-bottom:10px; }
+  .book-meta { font-size:0.79rem; color:var(--muted); line-height:1.7; }
+  .book-meta strong { color:var(--text); }
+
+  /* ── AWARDS ── */
+  .awards-list { display:grid; gap:1rem; }
+  .award-item {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:12px; padding:1.2rem 1.6rem;
+    display:flex; gap:1rem; align-items:flex-start;
+    transition:all 0.3s;
+  }
+  .award-item:hover { border-color:rgba(200,151,42,0.4); background:rgba(15,32,68,0.95); }
+  .award-star { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+  .award-text { font-size:0.9rem; color:var(--text); line-height:1.6; }
+
+  /* ── MEMBERSHIPS ── */
+  .membership-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem; }
+  .membership-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:12px; padding:1.2rem 1.5rem;
+    display:flex; gap:1rem; align-items:center;
+    transition:all 0.3s;
+  }
+  .membership-card:hover { border-color:rgba(34,164,184,0.4); transform:translateY(-2px); }
+  .mem-dot { width:10px; height:10px; border-radius:50%; background:var(--teal-light); flex-shrink:0; }
+  .mem-text { font-size:0.88rem; color:var(--text); }
+
+  /* ── PUBLICATIONS ── */
+  .pub-tabs {
+    display:flex; gap:8px; margin-bottom:2rem; flex-wrap:wrap;
+  }
+  .pub-tab {
+    padding: 7px 18px; border-radius:8px; cursor:pointer;
+    font-size:0.82rem; font-weight:600; border:none;
+    transition:all 0.25s;
+    background:rgba(255,255,255,0.05); color:var(--muted);
+    border:1px solid rgba(255,255,255,0.07);
+  }
+  .pub-tab.active { background:var(--accent); color:var(--navy); border-color:transparent; }
+  .pub-tab:hover:not(.active) { background:rgba(200,151,42,0.1); color:var(--text); }
+
+  .pub-list { display:grid; gap:0.85rem; }
+  .pub-item {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:1.1rem 1.5rem;
+    transition:all 0.25s;
+  }
+  .pub-item:hover { border-color:rgba(200,151,42,0.35); }
+  .pub-authors { font-size:0.8rem; color:var(--muted); margin-bottom:3px; }
+  .pub-authors strong { color: var(--accent); }
+  .pub-title { font-size:0.92rem; font-weight:600; color:var(--white); margin-bottom:4px; line-height:1.5; }
+  .pub-venue { font-size:0.79rem; color:var(--teal-light); }
+  .pub-year { font-size:0.72rem; background:rgba(200,151,42,0.1); color:var(--accent); padding:1px 8px; border-radius:4px; margin-left:6px; }
+  .pub-link-sm {
+    display:inline-flex; align-items:center; gap:3px;
+    font-size:0.72rem; color:var(--teal-light); text-decoration:none;
+    margin-top:5px; transition:color 0.2s;
+  }
+  .pub-link-sm:hover { color:var(--gold-light); }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:1.4rem; }
+  .project-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:14px; padding:1.8rem;
+    transition:all 0.3s;
+  }
+  .project-card:hover { border-color:rgba(200,151,42,0.4); transform:translateY(-4px); }
+  .project-tag {
+    display:inline-block; padding:3px 10px; border-radius:5px;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.08em;
+    background:rgba(26,122,138,0.15); color:var(--teal-light);
+    border:1px solid rgba(26,122,138,0.3); margin-bottom:10px;
+  }
+  .project-title { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.5; }
+  .project-desc { font-size:0.85rem; color:var(--muted); line-height:1.7; }
+  .project-worth { font-size:0.8rem; color:var(--accent); margin-top:10px; font-weight:600; }
+
+  /* ── TRAINING ── */
+  .training-list { display:grid; gap:1rem; }
+  .training-item {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:1.2rem 1.5rem;
+    display:flex; gap:1rem; align-items:flex-start;
+    transition:all 0.25s;
+  }
+  .training-item:hover { border-color:rgba(200,151,42,0.35); }
+  .training-icon { font-size:1.2rem; flex-shrink:0; margin-top:2px; }
+  .training-text { font-size:0.9rem; color:var(--text); line-height:1.6; }
+
+  /* ── REVIEWER ── */
+  .reviewer-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+  .reviewer-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:1rem 1.4rem;
+    display:flex; align-items:center; gap:10px;
+    transition:all 0.25s;
+  }
+  .reviewer-card:hover { border-color:rgba(34,164,184,0.4); }
+  .reviewer-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .reviewer-name { font-size:0.87rem; color:var(--text); }
+
+  /* ── ADMIN ── */
+  .admin-list { display:grid; gap:1rem; }
+  .admin-item {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:1.2rem 1.5rem;
+    display:flex; gap:1rem; align-items:flex-start;
+    transition:all 0.25s;
+  }
+  .admin-item:hover { border-color:rgba(200,151,42,0.35); }
+  .admin-indicator { width:3px; height:100%; min-height:20px; background:var(--accent); border-radius:3px; flex-shrink:0; margin-top:2px; }
+  .admin-text { font-size:0.9rem; color:var(--text); line-height:1.6; }
+  .admin-text strong { color:var(--accent); }
+
+  /* ── CONFERENCES ── */
+  .conf-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; }
+  .conf-card {
+    background: var(--card-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:1.2rem 1.5rem;
+    transition:all 0.25s;
+  }
+  .conf-card:hover { border-color:rgba(200,151,42,0.35); transform:translateY(-2px); }
+  .conf-tag { font-size:0.7rem; font-weight:700; color:var(--accent); letter-spacing:0.08em; margin-bottom:4px; text-transform:uppercase; }
+  .conf-name { font-size:0.9rem; color:var(--white); font-weight:600; line-height:1.5; }
+  .conf-meta { font-size:0.78rem; color:var(--muted); margin-top:4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(5,13,26,0.9);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align:center;
+  }
+  .footer-name { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--accent); }
+  .footer-sub { font-size:0.85rem; color:var(--muted); margin-top:6px; }
+  .footer-links { display:flex; gap:20px; justify-content:center; margin-top:1.5rem; flex-wrap:wrap; }
+  .footer-links a { font-size:0.82rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+  .footer-links a:hover { color:var(--accent); }
+  .footer-copy { font-size:0.75rem; color: rgba(138,155,181,0.5); margin-top:1.5rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity:0; transform:translateY(24px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  @keyframes fadeInRight {
+    from { opacity:0; transform:translateX(30px); }
+    to { opacity:1; transform:translateX(0); }
+  }
+  .fade-up {
+    opacity:0; transform:translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity:1; transform:translateY(0); }
+
+  /* ── SECTION ALTERNATES ── */
+  .bg-alt { background: rgba(15,32,68,0.4); }
+
+  /* ── PUB HIDDEN ── */
+  .pub-section { display:none; }
+  .pub-section.active { display:grid; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns:1fr; gap:40px; }
+    .hero-stats { order:-1; }
+    .stats-grid { grid-template-columns: repeat(4,1fr); }
+    .nav-links { display:none; flex-direction:column; position:absolute; top:64px; left:0; right:0; background:rgba(10,22,40,0.99); padding:1.5rem 2rem; gap:1rem; border-bottom:1px solid var(--border); }
+    .nav-links.open { display:flex; }
+    .hamburger { display:flex; }
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(2,1fr); }
+    .hero-title { font-size:2rem; }
+    section { padding:60px 1.2rem; }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height:1px; background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--accent); color:var(--navy);
+    border:none; cursor:pointer; font-size:1.2rem;
+    display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(200,151,42,0.4);
+    transition:all 0.25s; z-index:500;
+  }
+  #scrollTop:hover { background:var(--gold-light); transform:translateY(-3px); }
+  #scrollTop.visible { display:flex; }
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Dr. B. Rama</a>
+    <ul class="nav-links" id="navLinks">
+      <a href="#about" style="color:inherit;text-decoration:none">About</a>
+      <a href="#experience" style="color:inherit;text-decoration:none">Experience</a>
+      <a href="#achievements" style="color:inherit;text-decoration:none">Achievements</a>
+      <a href="#patents" style="color:inherit;text-decoration:none">Patents</a>
+      <a href="#publications" style="color:inherit;text-decoration:none">Publications</a>
+      <a href="#books" style="color:inherit;text-decoration:none">Books</a>
+      <a href="#projects" style="color:inherit;text-decoration:none">Projects</a>
+      <a href="#contact" style="color:inherit;text-decoration:none">Contact</a>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="about">
+  <div class="hero-inner container">
+    <div>
+      <img alt="Dr B RAMA" sizes="print 80px,128px" src="https://scholar.googleusercontent.com/citations?view_op=view_photo&amp;user=F-urIhkAAAAJ&amp;citpid=3" id="gsc_prf_pup-img" srcset="https://scholar.googleusercontent.com/citations?view_op=view_photo&amp;user=F-urIhkAAAAJ&amp;citpid=3 128w,https://scholar.googleusercontent.com/citations?view_op=medium_photo&amp;user=F-urIhkAAAAJ&amp;citpid=3 256w" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); margin-bottom: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+      <div class="hero-badge">🎓 Academic Profile</div>
+      <h1 class="hero-title">Dr. <span>B. Rama</span></h1>
+      <p class="hero-dept">Associate Professor & Head — Department of Computer Science<br>Member, Executive Council, Kakatiya University</p>
+      <div class="hero-info">
+        <strong>University College</strong>, Kakatiya University<br>
+        Warangal – 506 009, Telangana State, India
+      </div>
+      <div class="hero-contacts">
+        <a href="mailto:rama.abbidi@gmail.com" class="contact-btn primary">✉ rama.abbidi@gmail.com</a>
+        <a href="tel:9849579453" class="contact-btn secondary">📞 +91 98495 79453</a>
+        <a href="https://scholar.google.co.in/citations?user=F-urIhkAAAAJ&hl=en" target="_blank" class="contact-btn secondary">Google Scholar ↗</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=56702506200" target="_blank" class="contact-btn secondary">Scopus ↗</a>
+        <a href="https://orcid.org/0000-0003-2860-5602" target="_blank" class="contact-btn secondary">ORCID ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stats-card">
+        <div class="stats-card-title">Research Highlights</div>
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-number">89</div><div class="stat-label">Publications</div></div>
+          <div class="stat-item"><div class="stat-number">03</div><div class="stat-label">Patents Granted</div></div>
+          <div class="stat-item"><div class="stat-number">10</div><div class="stat-label">PhDs Awarded</div></div>
+          <div class="stat-item"><div class="stat-number">13</div><div class="stat-label">Patents Filed</div></div>
+          <div class="stat-item"><div class="stat-number">04</div><div class="stat-label">Books Authored</div></div>
+          <div class="stat-item"><div class="stat-number">21</div><div class="stat-label">Guest Lectures</div></div>
+          <div class="stat-item"><div class="stat-number">12</div><div class="stat-label">Int'l Conferences</div></div>
+          <div class="stat-item"><div class="stat-number">04</div><div class="stat-label">PhD Scholars (Ongoing)</div></div>
+        </div>
+        <div class="citation-row">
+          <div class="cit-col">
+            <strong>Google Scholar</strong>
+            <span>Citations: 503 | h-index: 13</span>
+          </div>
+          <div class="cit-col">
+            <strong>Scopus</strong>
+            <span>Citations: 218 | h-index: 08</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="qualifications">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Education</div>
+      <h2 class="section-title">Academic Qualifications</h2>
+    </div>
+    <div class="qual-grid">
+      <div class="qual-card fade-up">
+        <div class="qual-icon">🎓</div>
+        <div>
+          <div class="qual-degree">Ph.D. (Computer Science)</div>
+          <div class="qual-field">Doctor of Philosophy</div>
+          <div class="qual-uni">Sri Padmavathi Mahila Viswa Vidyalayam, Tirupati</div>
+        </div>
+      </div>
+      <div class="qual-card fade-up">
+        <div class="qual-icon">📜</div>
+        <div>
+          <div class="qual-degree">M.Phil. (Computer Science)</div>
+          <div class="qual-field">Master of Philosophy</div>
+          <div class="qual-uni">Sri Padmavathi Mahila Viswa Vidyalayam, Tirupati</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience" class="bg-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Career</div>
+      <h2 class="section-title">Professional Experience</h2>
+    </div>
+    <div class="timeline fade-up">
+      <div class="tl-item">
+        <div class="tl-period">June 2024 – Present</div>
+        <div class="tl-role">Executive Council Member & Head, Department of Computer Science</div>
+        <div class="tl-org">University College, Kakatiya University, Warangal</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">May 2010 – Present</div>
+        <div class="tl-role">Associate Professor, Department of Computer Science</div>
+        <div class="tl-org">University College, Kakatiya University, Warangal</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Oct 2007 – Apr 2010</div>
+        <div class="tl-role">Associate Professor</div>
+        <div class="tl-org">Vaagdevi College of Engineering, Warangal</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Jul 2005 – Oct 2007</div>
+        <div class="tl-role">Assistant Professor</div>
+        <div class="tl-org">Jyothishmathi Institute of Technological Sciences, Karimnagar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="achievements">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Metrics</div>
+      <h2 class="section-title">Research Achievements</h2>
+    </div>
+    <div class="achievements-grid fade-up">
+      <div class="ach-card"><div class="ach-num">89</div><div class="ach-label">National / International Publications</div></div>
+      <div class="ach-card"><div class="ach-num">03</div><div class="ach-label">Patents Granted</div></div>
+      <div class="ach-card"><div class="ach-num">13</div><div class="ach-label">Patents Filed & Pre-Published</div></div>
+      <div class="ach-card"><div class="ach-num">10</div><div class="ach-label">PhDs Awarded</div></div>
+      <div class="ach-card"><div class="ach-num">04</div><div class="ach-label">Ongoing PhD Scholars</div></div>
+      <div class="ach-card"><div class="ach-num">01</div><div class="ach-label">Best Paper Award</div></div>
+      <div class="ach-card"><div class="ach-num">01</div><div class="ach-label">Outstanding Award</div></div>
+      <div class="ach-card"><div class="ach-num">12</div><div class="ach-label">International Conferences Attended</div></div>
+      <div class="ach-card"><div class="ach-num">17</div><div class="ach-label">Workshops Attended (Participant)</div></div>
+      <div class="ach-card"><div class="ach-num">05</div><div class="ach-label">Workshops as Resource Person</div></div>
+      <div class="ach-card"><div class="ach-num">05</div><div class="ach-label">Workshops Conducted (Coordinator)</div></div>
+      <div class="ach-card"><div class="ach-num">21</div><div class="ach-label">Guest Lectures Delivered</div></div>
+    </div>
+
+    <div style="margin-top:3rem;">
+      <div class="section-header fade-up">
+        <div class="section-tag">Honors</div>
+        <h2 class="section-title">Awards & Recognitions</h2>
+      </div>
+      <div class="awards-list fade-up">
+        <div class="award-item">
+          <div class="award-star">🏆</div>
+          <div class="award-text"><strong>IRSD Exemplary Teacher Award 2025</strong> — 15th International Conference on Interdisciplinary Research for Sustainable Development (IRSD 2025), organized by Green ThinkerZ & I2OR India, in association with Western Sydney University, Australia; on 05th June 2025 (World Environment Day)</div>
+        </div>
+        <div class="award-item">
+          <div class="award-star">🌟</div>
+          <div class="award-text"><strong>Associate Fellow</strong> — Telangana Academy of Sciences (TAAS)</div>
+        </div>
+        <div class="award-item">
+          <div class="award-star">🎖</div>
+          <div class="award-text"><strong>Fellow Member</strong> — International Institute of Organized Research (I2OR), w.e.f. March 2023</div>
+        </div>
+        <div class="award-item">
+          <div class="award-star">🏅</div>
+          <div class="award-text"><strong>Outstanding Scientist Award</strong> — International Research Awards on Science, Technology and Management, May 14–15, 2022, Chennai, organized by VDGOOD Professional Association</div>
+        </div>
+        <div class="award-item">
+          <div class="award-star">📄</div>
+          <div class="award-text"><strong>Best Paper Award</strong> — for the paper "A Data mining perspective for forest fire prediction" presented in International Conference</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="patents" class="bg-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Intellectual Property</div>
+      <h2 class="section-title">Patents</h2>
+    </div>
+
+    <div style="margin-bottom:1.5rem; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--accent);">Granted Patents (03)</div>
+    <div class="patents-container fade-up">
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-granted">Granted</span></div>
+        <div>
+          <div class="patent-num">Patent No: 202110707075</div>
+          <div class="patent-title">Predictive And Causal Chain Mining To Discover Actionable Knowledge From Stock Markets</div>
+          <div class="patent-date">Published: 24-11-2021 | Valid up to Eight Years</div>
+          <a href="https://pericles.ipaustralia.gov.au/ols/auspat/applicationDetails.do?applicationNo=2021107075" target="_blank" class="patent-link">View Patent ↗</a>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-granted">Granted</span></div>
+        <div>
+          <div class="patent-num">Patent No: 20 2021 105 968.0 (DPMA, Germany)</div>
+          <div class="patent-title">A Machine Learning and AI-Based System for Transmitting Signals in 6G Wireless Communication Networks</div>
+          <div class="patent-date">Published: Jan 13, 2022</div>
+          <a href="https://register.dpma.de/DPMAregister/pat/register?AKZ=2020211059680" target="_blank" class="patent-link">DPMAregister ↗</a>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-granted">Granted</span></div>
+        <div>
+          <div class="patent-num">Design Patent No: 490879-001</div>
+          <div class="patent-title">AI Based Device For Content Analysis</div>
+          <div class="patent-date">Published: Feb 12, 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin:2rem 0 1.5rem; font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--accent);">Pre-Published Patents (13)</div>
+    <div class="patents-container fade-up">
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 202641032837 | Date of Filing: 18/03/2026</div>
+          <div class="patent-title">An Artificial Intelligence Based System for Screening Learning Disorders</div>
+          <div class="patent-date">Published: 24/04/2026 | Page No: 739 (Part 1)</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 202641032838 | Date of Filing: 18/03/2026</div>
+          <div class="patent-title">System And Method for Causal Identification of Chronic Kidney Disease Risk Factors</div>
+          <div class="patent-date">Published: 24/04/2026 | Page No: 740 (Part 1)</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 202141011558</div>
+          <div class="patent-title">Hybrid Kernel Modelling Predictive Performance For Optimizing The Classification</div>
+          <div class="patent-date">Published: 16/04/2021 | Page No: 81</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 202041006341</div>
+          <div class="patent-title">An Efficient Encryption System For Data Dynamics On Encrypted Data Secured In Cloud And Method Thereof</div>
+          <div class="patent-date">Published: 21/02/2020 | Page No: 93</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201941044028</div>
+          <div class="patent-title">An Advanced Incremental Association Rule Mining Process In Case Of Data Insertions</div>
+          <div class="patent-date">Published: 29/11/2019 | Page No: 120</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201941043678</div>
+          <div class="patent-title">An Advanced Incremental Association Rule Mining Process In Case Of Data Deletions</div>
+          <div class="patent-date">Published: 29/11/2019 | Page No: 112</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201941043677</div>
+          <div class="patent-title">An Advanced Incremental Association Rule Mining Process In Case Of Support Change</div>
+          <div class="patent-date">Published: 29/11/2019 | Page No: 111</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201941017724</div>
+          <div class="patent-title">An Heuristic Tree Structure Algorithm To Find An Item Using Scaling</div>
+          <div class="patent-date">Published: 07/06/2019 | Page No: 122</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201941001488</div>
+          <div class="patent-title">A System for Load Balancing In Cloud Computing By Optimized Weighted Round Robin Method</div>
+          <div class="patent-date">Published: 08/02/2019 | Page No: 72</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201841047148</div>
+          <div class="patent-title">Task Scheduling System For Load Balancing In Cloud Computing Based On User Priority Guidance</div>
+          <div class="patent-date">Published: 04/01/2019 | Page No: 33</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201841026128</div>
+          <div class="patent-title">Construction of Mean Based Divisive Clustering Method</div>
+          <div class="patent-date">Published: 20/07/2018 | Page No: 58</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 201841026127</div>
+          <div class="patent-title">A System and a Method for Load Balancing in Cloud Computing</div>
+          <div class="patent-date">Published: 20/07/2018 | Page No: 57</div>
+        </div>
+      </div>
+      <div class="patent-card">
+        <div style="flex-shrink:0;"><span class="patent-badge badge-filed">Filed</span></div>
+        <div>
+          <div class="patent-num">App. No: 20184106854A</div>
+          <div class="patent-title">Optical Character Recognizing (OCR) System to Recognize Complex Mixed Connective Conjunct Consonant Contained Words</div>
+          <div class="patent-date">Published: 25/05/2018 | Page No: 110</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="books">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Authored Works</div>
+      <h2 class="section-title">Books Published</h2>
+    </div>
+    <div class="books-grid fade-up">
+      <div class="book-card">
+        <div class="book-year">2025</div>
+        <div class="book-title">Python Programming with Applications</div>
+        <div class="book-role">Author</div>
+        <div class="book-meta">
+          <strong>Publisher:</strong> Quill Tech Publications<br>
+          <strong>ISBN:</strong> 978-936-786-014-4
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-year">July 2021</div>
+        <div class="book-title">C AND DATA STRUCTURES</div>
+        <div class="book-role">Author</div>
+        <div class="book-meta">
+          <strong>Publisher:</strong> Quill Tech Publications<br>
+          <strong>ISBN:</strong> 978-93-6786-719-8
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-year">2017</div>
+        <div class="book-title">Programming with 'C'</div>
+        <div class="book-role">Author</div>
+        <div class="book-meta">
+          <strong>Publisher:</strong> Professional Books Publisher<br>
+          <strong>ISBN:</strong> 978-93-85506-28-4
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-year">2017</div>
+        <div class="book-title">Current Research Advances in Computer Sciences</div>
+        <div class="book-role">Editor</div>
+        <div class="book-meta">
+          <strong>Publisher:</strong> BSP Publishers<br>
+          <strong>ISBN:</strong> 978-93-5230-183-6
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects" class="bg-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Funded Research</div>
+      <h2 class="section-title">Research Projects</h2>
+    </div>
+    <div class="projects-grid fade-up">
+      <div class="project-card">
+        <div class="project-tag">Collaborative Project</div>
+        <div class="project-title">Impact of the Beti Bachao Beti Padhao Scheme in Telangana State: Sociopolitical, Legal and Historical Environment of Women's Empowerment</div>
+        <div class="project-desc">Short-term project in collaboration with Central University of Hyderabad. Started January 2024.</div>
+        <div class="project-worth">₹11 Lakhs Funded</div>
+      </div>
+      <div class="project-card">
+        <div class="project-tag">RUSA 2.0 Project</div>
+        <div class="project-title">Causal Data Mining Approach to Study the Inter-Relationship between Cardio Vascular Diseases and Renal System Failure</div>
+        <div class="project-desc">Sanctioned under RUSA 2.0. Duration: January 2025 to July 2026.</div>
+        <div class="project-worth">₹20 Lakhs Funded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="publications">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Research Output</div>
+      <h2 class="section-title">Publications (89 Total)</h2>
+    </div>
+    
+    <div class="chart-container fade-up" style="position: relative; height:350px; width:100%; max-width: 900px; margin: 0 auto 3rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.5rem;">
+      <canvas id="pubChart"></canvas>
+    </div>
+
+    <div class="pub-tabs fade-up">
+      <button class="pub-tab active" onclick="showPub('recent')">Recent (2020–2025)</button>
+      <button class="pub-tab" onclick="showPub('ieee')">IEEE Conference</button>
+      <button class="pub-tab" onclick="showPub('springer')">Springer Conference</button>
+      <button class="pub-tab" onclick="showPub('journals')">Journals</button>
+      <button class="pub-tab" onclick="showPub('early')">Earlier Works</button>
+    </div>
+
+    <div class="pub-list pub-section active" id="pub-recent">
+      <div class="pub-item">
+        <div class="pub-authors">P. Kiran Kumar, <strong>B. RAMA</strong></div>
+        <div class="pub-title">A Research Travelogue on Image Classification on Brain Tumor</div>
+        <div class="pub-venue">International Conference on Computer Science and Communication Engineering, Atlantis Press. ISBN: 978-94-6463-858-5. DOI: 10.2991/978-94-6463-858-5_5<span class="pub-year">Nov 2025</span></div>
+        <a href="https://doi.org/10.2991/978-94-6463-858-5_5" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praneeth Reddy, Abhijeet Chandra, <strong>Boddireddy Rama</strong></div>
+        <div class="pub-title">Machine Learning-Based Prediction of US Stock Market Direction Leveraging Volatility Indices</div>
+        <div class="pub-venue">IEEE Global Conference on Wireless Computing Networking. ISBN: 979-8-0335-2/25<span class="pub-year">Nov 2025</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">B. Anitha, <strong>B. RAMA</strong></div>
+        <div class="pub-title">A Research Travelogue on Text Classification</div>
+        <div class="pub-venue">International Conference on Computer Science and Communication Engineering, Atlantis Press. pp: 532-541. DOI: 10.2991/978-94-6463-858-5_46<span class="pub-year">Nov 2025</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">P. Kiran Kumar, <strong>B. RAMA</strong></div>
+        <div class="pub-title">Classification Model for Benign and Malignant Tumor Cases in Brain Tumor and Lung Cancer</div>
+        <div class="pub-venue">AIP Conference Proceedings 3325, 070040-1. DOI: 10.1063/5.0291943<span class="pub-year">Oct 2025</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">P. PRAVEEN, Mohammed Ali SHAIK, <strong>B. RAMA</strong>, V. ANITHA</div>
+        <div class="pub-title">An Optimistic Approach to Share Private Health Records Using Blockchain Technology</div>
+        <div class="pub-venue">Book Chapter in "Blockchain Applications in Healthcare: Innovations and Practices", Vol 1, pp: 103-115. WILEY ISTE. ISBN: 978-1-394-22950-5<span class="pub-year">Jun 2023</span></div>
+        <a href="https://www.wiley.com/en-cn/Blockchain+Applications+in+Healthcare%3A+Innovations+and+Practices-p-9781394229505" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors"><strong>B Rama</strong>, P Praveen, Mohammed Ali Shaik</div>
+        <div class="pub-title">Machine Learning Model to Detect Parkinson's Disease Using MRI Data</div>
+        <div class="pub-venue">IEEE International Conference on Sustainable Communication Networks and Application (ICSCNA 2023). pp: 1516–1521. DOI: 10.1109/ICSCNA58489.2023.10370527<span class="pub-year">2023</span></div>
+        <a href="https://ieeexplore.ieee.org/document/10370527" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Jothi Prabha, Prabharan Sengodan, Natesan Venkateswaran, S. Abijah Roseline, <strong>B. Rama</strong></div>
+        <div class="pub-title">Radial Basis Function Networks-Based Resource-Aware Offloading Video Analytics in Mobile Edge Computing</div>
+        <div class="pub-venue">Wireless Networks, Springer Nature. Impact Factor: 3.0. DOI: https://doi.org/10.1007/s11276-023-03420-7<span class="pub-year">Jun 2023</span></div>
+        <a href="https://link.springer.com/article/10.1007/s11276-023-03420-7" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Jothi Prabha, <strong>Rama Abbidi</strong>, E Vishnu Priya Reddy, L Tarasvi</div>
+        <div class="pub-title">Image-based Detection of Dyslexic Readers from 2-D Scan Path using an Enhanced Deep Transfer Learning Paradigm</div>
+        <div class="pub-venue">IEEE International Conference on Digital Image Computing: Techniques and Applications, Sydney, Australia (Nov 30 – Dec 2, 2022)<span class="pub-year">2022</span></div>
+        <a href="https://ieeexplore.ieee.org/document/10034577" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Sallaudin, <strong>Rama B</strong></div>
+        <div class="pub-title">Extended Informative Local Binary Patterns: A Model for Image Feature Extraction</div>
+        <div class="pub-venue">Lecture Notes in Networks and Systems, Springer Singapore. ISSN: 2367-3370. DOI: 10.1007/978-981-19-4990-6_34<span class="pub-year">Feb 2022</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-19-4990-6_34" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Nagaparameswarachary N, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Hybrid Application Model to Improve the Accuracy by Using Naïve Bayes Algorithm</div>
+        <div class="pub-venue">Advances in Intelligence Systems and Computing, Vol 1415, Springer Singapore. DOI: 10.1007/978-981-16-7330-6_16<span class="pub-year">2021</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-16-7330-6_16" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Thoyazan Sultan Algaradi, <strong>RAMA B</strong></div>
+        <div class="pub-title">An Authenticated Key Management Scheme for Securing Big Data Environment</div>
+        <div class="pub-venue">International Journal of Electrical and Computer Engineering (IJECE), Vol 12, Issue 3. DOI: http://doi.org/10.11591/ijece.v12i3<span class="pub-year">Jun 2022</span></div>
+        <a href="http://ijece.iaescore.com/index.php/IJECE/article/view/26021/15713" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Nagaparameswarachary N, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">To Reduce Error Rate and Improve Performance of Classification Algorithm</div>
+        <div class="pub-venue">IOP Conference Series: Materials Science and Engineering, Vol 981, ICRAEM-2020, Warangal. DOI: 10.1088/1757-899X/981/2/022064<span class="pub-year">2020</span></div>
+        <a href="https://iopscience.iop.org/article/10.1088/1757-899X/981/2/022064/pdf" target="_blank" class="pub-link-sm">IOP Science ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-list pub-section" id="pub-ieee">
+      <div class="pub-item">
+        <div class="pub-authors">Thoyazan Sultan Ali Algaradi, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Big Data Security: A Progress Study of Current User Authentication Schemes</div>
+        <div class="pub-venue">IEEE iCATccT 2018, Mangalore. DOI: 10.1109/iCATccT44854.2018.9001946<span class="pub-year">2018</span></div>
+        <a href="https://ieeexplore.ieee.org/document/9001946" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors"><strong>RAMA BoddiReddy</strong>, Praveen P, Thanupriya Chowdary, Harish</div>
+        <div class="pub-title">A Study on Causal Discovery with PC Algorithm</div>
+        <div class="pub-venue">IEEE International Conference on Infocom Technologies and Unnamed System (ICTUS 2017), Amity University, Dubai, UAE. Dec 18-20<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp&arnumber=8286083" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Santhosh Hinge, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">OCR- Mirror Image Reflection Approach: Document Back Side Character Recognition using Neural Fuzzy Hybrid System</div>
+        <div class="pub-venue">IEEE 7th International Conference on Advanced Computing (IACC-2017), pp 738-743<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/7976887" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Harchana Bhupati, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Causal Rule Mining for Knowledge Discovery from Databases</div>
+        <div class="pub-venue">IEEE International Conference on Intelligent Computing and Control Systems (ICICCS-2017), Madurai. Jun 15-16<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/document/8250611" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">An Advanced Algorithm for Load Balancing in Cloud Computing using Fuzzy Technique</div>
+        <div class="pub-venue">IEEE International Conference on Intelligent Computing and Control Systems (ICICCS 2017), Madurai<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/document/8250624" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Simulation of Optimized Load Balancing and User Job Scheduling Using CloudSim</div>
+        <div class="pub-venue">IEEE International Conference on Recent Trends in Electronics Information Communication Technology (RTEICT-2017), Bangalore. May 19-20<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/document/8256824" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Rajani Devi, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Designing Software Reuse Repository Through Intelligent Classification for Effective Search and Retrieval Mechanism</div>
+        <div class="pub-venue">IEEE Conference on Advances in Electrical, Electronics, Information, Communication and Bio-Informatics (AEEICB17). Feb 27-28<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7972327" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Harchana Bhupati, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Novel Framework for Stock Trading Analysis Using Causal Relationship Mining</div>
+        <div class="pub-venue">IEEE Conference on Advances in Electrical, Electronics, Information, Communication and Bio-Informatics (AEEICB17). Feb 27-28<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/abstract/document/7972399" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, <strong>RAMA BoddiReddy</strong>, Sampath Kumar T</div>
+        <div class="pub-title">An Efficient Clustering Algorithm of Minimal Spanning Tree</div>
+        <div class="pub-venue">IEEE International Conference on Advances in Electrical, Electronics, Information, Communication and Bio-Informatics (AEEICB17)<span class="pub-year">2017</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7972398" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, Jayanth Babu Ch, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Big Data Environment for Geospatial Data Analysis</div>
+        <div class="pub-venue">IEEE International Conference on Communication and Electronic Systems (ICCES2016), PPG Institute of Technology, Coimbatore. Oct 21-22<span class="pub-year">2016</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7889816" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Santhosh Hinge, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Neural Fuzzy Closed Hybrid System for Classification, Identification of Mixed Connective Consonants and Symbols with Layered Methodology</div>
+        <div class="pub-venue">IEEE International Conference on Power Electronics, Intelligent Control and Energy System (ICPEICES-2016), Delhi Technological University. Jul 4-6<span class="pub-year">2016</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7853708" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">An Empirical Comparison of Clustering Using Hierarchical Methods and K-means</div>
+        <div class="pub-venue">2nd IEEE International Conference on Advances in Electrical, Information, Communication and Bio-Informatics (AEEICB-2016). Feb 27-28<span class="pub-year">2016</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7538328" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, NagaRaju A</div>
+        <div class="pub-title">Mining of Negative Association Rules using Improved Frequent Pattern Tree</div>
+        <div class="pub-venue">IEEE International Conference on Computing and Communication Technology (ICCCT2014). DOI: 10.1109/ICCCT2.2014.7066748<span class="pub-year">Dec 2014</span></div>
+        <a href="https://ieeexplore.ieee.org/document/7066748" target="_blank" class="pub-link-sm">IEEE Xplore ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Jayasree Reddy P, <strong>RAMA BoddiReddy</strong>, Swamy G</div>
+        <div class="pub-title">A New Approach for Web Mining</div>
+        <div class="pub-venue">IEEE International Conference on Computer Modeling and Simulation (ICCMS), Mumbai<span class="pub-year">Jan 2011</span></div>
+      </div>
+    </div>
+
+    <div class="pub-list pub-section" id="pub-springer">
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Mining of Negative Association Rules</div>
+        <div class="pub-venue">International Conference on Artificial Intelligence & Cognitive Computing (AICC-2018), Springer, MLR Institute of Technology, Hyderabad. ISBN: 978-981-13-1579-4<span class="pub-year">Feb 2018</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Efficient Mining of Negative Association Rules using Frequent Item Set Mining</div>
+        <div class="pub-venue">Springer AISC, ICCII-2017, Hyderabad. ISSN: 1867-5662. (SCOPUS)<span class="pub-year">2017</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-13-1580-0_68" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Performance of Negative Association Rule Mining using Improved Frequent Pattern Tree</div>
+        <div class="pub-venue">Springer AISC, ICCII-2017, Hyderabad. (SCOPUS)<span class="pub-year">2017</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-10-8228-3_9" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Satyavathi N, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Incremental Updating of Mined Association Rules for Reflecting Record Insertions</div>
+        <div class="pub-venue">Springer First International Conference on Computational Intelligence and Informatics (ICCII 2016), JNTUH. DOI: 10.1007/978-981-10-2471-9<span class="pub-year">May 2016</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-10-2471-9_57" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Santhosh Hinge, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">OCR- Assessment of Proposed Methodology Implications and Invention Outcomes with Graphical Representation Algorithmic Flow</div>
+        <div class="pub-venue">Springer International Conference on Advanced Computing and Intelligent Engineering (ICACIE-2016), C.V.Raman College of Engineering, Bhubaneswar. Dec 21-23<span class="pub-year">2016</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-10-6872-0_6" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Santhosh Hinge, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Five Layered-Neural Fuzzy Closed Loop Hybrid Control System with Compound Bayesian Decision Making Process for Classification of Mixed Connective Conjunct Consonants and Numerals</div>
+        <div class="pub-venue">Springer IC4S 2016, Aryabhatta College of Engineering, Ajmer. pp.307-313. Aug 12-13<span class="pub-year">2016</span></div>
+        <a href="https://link.springer.com/chapter/10.1007/978-981-10-3770-2_58" target="_blank" class="pub-link-sm">Springer ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Satyavathi N, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Research Travelogue-Performance Evaluation of Index Support Item Set Mining Algorithms</div>
+        <div class="pub-venue">Springer AICC-2018, MLR Institute of Technology, Hyderabad. ISBN: 978-981-13-1579-4<span class="pub-year">Feb 2018</span></div>
+      </div>
+    </div>
+
+    <div class="pub-list pub-section" id="pub-journals">
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Heuristic ACO Based Technique for Balancing the Load in Cloud Computing</div>
+        <div class="pub-venue">International Journal Of Scientific & Technology Research, Vol 9, Issue 3. ISSN: 2277-8616<span class="pub-year">Mar 2020</span></div>
+        <a href="http://www.ijstr.org/final-print/mar2020/A-Heuristic-Aco-Based-Technique-For-Balancing-The-Load-In-Cloud-Computing.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">T. Rajani Devi, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Software Reusability Development through NFL Approach for Identifying Security based Inner Relationships of Affecting Factors</div>
+        <div class="pub-venue">International Journal of Electrical and Computer Engineering (IJECE), Vol 10, No 1. pp: 333–345. DOI: 10.11591/ijece.v10i1.pp333-345<span class="pub-year">Feb 2020</span></div>
+        <a href="http://ijece.iaescore.com/index.php/IJECE/article/view/15039" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">An Optimized Clustering Method to Create Clusters Efficiently</div>
+        <div class="pub-venue">Journal Of Mechanics Of Continua And Mathematical Sciences, Vol 15, No 1. pp: 339-348. ISSN: 0973-8975<span class="pub-year">Jan 2020</span></div>
+        <a href="http://www.journalimcms.org/journal/an-optimized-clustering-method-to-create-clusters-efficiently/" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Ramesh D, <strong>RAMA Boddireddy</strong></div>
+        <div class="pub-title">Flexible and Efficient Encryption Scheme for Data Dynamics on Encrypted Outsourced Data to Public Cloud</div>
+        <div class="pub-venue">International Journal Of Scientific & Technology Research, Vol 8, Issue 10. ISSN: 2277-8616<span class="pub-year">Oct 2019</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Satyavati N, <strong>RAMA Boddireddy</strong></div>
+        <div class="pub-title">A Case Study- Incremental Mining Algorithm on Library Transactional Database</div>
+        <div class="pub-venue">International Journal of Innovative Technology and Exploring Engineering (IJITEE). Volume 8, Issue 10. (Scopus)<span class="pub-year">Aug 2019</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Ramesh D, <strong>RAMA Boddireddy</strong></div>
+        <div class="pub-title">A Light Weight Cryptographic Technique for Secure Outsourcing and Retrieval of Data in Cloud Computing</div>
+        <div class="pub-venue">International Journal of Innovative Technology and Exploring Engineering (IJITEE). Volume 8, Issue 10. (Scopus)<span class="pub-year">Aug 2019</span></div>
+        <a href="https://www.ijitee.org/wp-content/uploads/papers/v8i10/J10730881019.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Thoyazan Sultan Algaradi, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Novel Blowfish based-Algorithm to Improve Encryption Performance in Hadoop Using MapReduce</div>
+        <div class="pub-venue">International Journal of Scientific & Technology Research – Vol 8, Issue 11. ISSN: 2277-8616. (Elsevier, Scopus)<span class="pub-year">Nov 2019</span></div>
+        <a href="http://www.ijstr.org/final-print/nov2019/A-Novel-Blowfish-Based-algorithm-To-Improve-Encryption-Performance-In-Hadoop-Using-Mapreduce.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Mining of Negative Association Rules using Improved Frequent Pattern Tree</div>
+        <div class="pub-venue">International Journal of Pure and Applied Mathematics (IJPAM), Vol 120, No 6. pp: 3301-3308. (SCOPUS)<span class="pub-year">Jun 2018</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Ramesh D, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Secure Privacy Implications for Clients and End-users through Key Assortment Crypto Techniques Implicated Algorithm</div>
+        <div class="pub-venue">International Journal of Electrical and Computer Engineering (IJECE), Vol 8, No 6. Impact Factor: 0.3<span class="pub-year">Sep 2018</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Optimized Weighted Round Robin Approach for Load Balancing in Cloud Computing</div>
+        <div class="pub-venue">Journal of Computational and Theoretical Nanoscience, Vol 16. DOI: 10.1166/jctn.2019.7823<span class="pub-year">2019</span></div>
+        <a href="https://www.ingentaconnect.com/contentone/asp/jctn/2019/00000016/f0020005/art00025" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Framework for User Priority Guidance based Scheduling for Load Balancing in Cloud Computing</div>
+        <div class="pub-venue">International Journal of Simulation: Systems, Science and Technology (IJSSST). ISSN: 1473-804x<span class="pub-year">Nov 2018</span></div>
+        <a href="https://ijssst.info/Vol-19/No-6/paper24.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors"><strong>RAMA BoddiReddy</strong>, Jayasree Reddy P, Salim Jiwani</div>
+        <div class="pub-title">A Survey on Clustering: Current Status and Challenging Issues</div>
+        <div class="pub-venue">International Journal on Computer Science and Engineering, Vol 2, Issue 9. Impact Factor: 1.25<span class="pub-year">2010</span></div>
+        <a href="https://www.researchgate.net/publication/50235168" target="_blank" class="pub-link-sm">ResearchGate ↗</a>
+      </div>
+    </div>
+
+    <div class="pub-list pub-section" id="pub-early">
+      <div class="pub-item">
+        <div class="pub-authors">Harchana Bhupati, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Methodology for Discovering Upstream and Downstream Causal Relationships in Stock Market</div>
+        <div class="pub-venue">IJITEE, Volume 8, Issue 10. (Scopus)<span class="pub-year">Aug 2019</span></div>
+        <a href="https://www.ijitee.org/wp-content/uploads/papers/v8i10/J10740881019.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Satyavathi N, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">Present State-of-the-Art of Association Rule Mining Algorithms</div>
+        <div class="pub-venue">International Journal of Engineering and Advanced Technology (IJEAT), Vol 9, Issue 1. (Scopus)<span class="pub-year">Oct 2019</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Santhosh Hinge, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Mixed Conjunct Consonants Recognition by Using Soft Computing Based FNHS through NI-Vision Assistant</div>
+        <div class="pub-venue">International Journal of Applied Engineering Research, ISSN: 0973-4562, Vol 12, No 23. pp: 13405-13415<span class="pub-year">2017</span></div>
+        <a href="https://www.ripublication.com/ijaer17/ijaerv12n23_53.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Venkateswarlu Velde, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A Virtual Machine Based Load Balancing Algorithm for Cloud Computing</div>
+        <div class="pub-venue">International Journal of Pure and Applied Mathematics, Vol 117, No 21. pp: 219-229<span class="pub-year">Dec 2017</span></div>
+        <a href="https://acadpubl.eu/jsi/2017-117-20-22/articles/21/25.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">An Efficient Smart Search Using R Tree on Spatial Data</div>
+        <div class="pub-venue">Journal of Advanced Research in Dynamical & Control Systems, 11-Special Issue. (SCOPUS Indexed)<span class="pub-year">Jul 2017</span></div>
+        <a href="https://www.jardcs.org/backissues/abstract.php?archiveid=1039" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Praveen P, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">A k-means Clustering Algorithm on Numeric Data</div>
+        <div class="pub-venue">International Journal of Pure and Applied Mathematics, Vol 117, No 7. (SCOPUS Indexed)<span class="pub-year">Nov 2017</span></div>
+        <a href="https://acadpubl.eu/jsi/2017-117-7/articles/7/17.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Nagaparameswara Chary N, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Analysis of Classification Technique Algorithms in Data Mining – A Review</div>
+        <div class="pub-venue">International Journal of Computer Sciences and Engineering, Vol 4, Issue 6. Impact Factor: 3.022<span class="pub-year">Jun 2016</span></div>
+        <a href="https://www.ijcseonline.org/pub_paper/33-IJCSE-01723.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Bala Krishna E, <strong>RAMA BoddiReddy</strong>, Nagaraju A</div>
+        <div class="pub-title">A Survey on Effective Mining of Negative Association Rules from Huge Databases</div>
+        <div class="pub-venue">International Journal of Computer Science and Engineering (IJCSE), Vol 3, Issue 9. Impact Factor: 3.022<span class="pub-year">Sep 2015</span></div>
+        <a href="https://www.ijcseonline.org/pub_paper/45-IJCSE-013119.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Salim Jiwani, <strong>RAMA BoddiReddy</strong>, Mruthyumjaya Rao</div>
+        <div class="pub-title">A Data Mining Perspective for Forest Fire Prediction (Best Paper Award)</div>
+        <div class="pub-venue">International Conference on Information Technology and Real World Problems<span class="pub-year">2009</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Usha Rani M, Sudha T, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Knowledge Based System Development for the Health Assessment – HAXS</div>
+        <div class="pub-venue">Bio-Science Research Bulletin, Volume 21, No. 2<span class="pub-year">Jul–Dec 2005</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors"><strong>RAMA BoddiReddy</strong>, Sudha T, Usha Rani M</div>
+        <div class="pub-title">Evaluation of XMR – The Expert System on Mental Retardation</div>
+        <div class="pub-venue">Bio-Science Research Bulletin, Volume 21, No. 2<span class="pub-year">Jul–Dec 2005</span></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Srinivasa Rao Ch, <strong>RAMA BoddiReddy</strong>, Pavan Kumar D</div>
+        <div class="pub-title">Distributed Firewall Design Concept Based On LAN</div>
+        <div class="pub-venue">International Journal of Advances in Engineering Research (IJAER), Vol 2, Issue VI. ISSN: 2231-5152<span class="pub-year">Dec 2011</span></div>
+        <a href="https://ijaer.com/admin/upload/04%20Dec_2011_Srinivasa%20Rao.pdf" target="_blank" class="pub-link-sm">View ↗</a>
+      </div>
+      <div class="pub-item">
+        <div class="pub-authors">Srinivasa Rao Ch, <strong>RAMA BoddiReddy</strong></div>
+        <div class="pub-title">Firewall Policy Management through Sliding Window Filtering Method Using Data Mining Techniques</div>
+        <div class="pub-venue">International Journal of Computer Science & Engineering Survey (IJCSES), Vol 2, No 2. DOI: 10.5121/ijcses.2011.2205<span class="pub-year">2011</span></div>
+        <a href="https://www.researchgate.net/publication/267680505" target="_blank" class="pub-link-sm">ResearchGate ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-alt">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; flex-wrap:wrap;">
+      <div>
+        <div class="section-header fade-up">
+          <div class="section-tag">Professional Bodies</div>
+          <h2 class="section-title" style="font-size:1.8rem;">Memberships</h2>
+        </div>
+        <div class="membership-grid fade-up" style="grid-template-columns:1fr;">
+          <div class="membership-card"><div class="mem-dot"></div><div class="mem-text">Association for Computing Machinery (ACM) — Life Time Membership (International)</div></div>
+          <div class="membership-card"><div class="mem-dot"></div><div class="mem-text">International Association of Engineers (IAENG) — Membership No: 212799</div></div>
+          <div class="membership-card"><div class="mem-dot"></div><div class="mem-text">Computer Society of India (CSI) — Life Time Membership (National)</div></div>
+          <div class="membership-card"><div class="mem-dot"></div><div class="mem-text">Indian Society for Technical Education (ISTE) — Life Time Membership: LM–135496</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-header fade-up">
+          <div class="section-tag">Peer Review</div>
+          <h2 class="section-title" style="font-size:1.8rem;">Reviewer Member</h2>
+        </div>
+        <div class="reviewer-grid fade-up" style="grid-template-columns:1fr;">
+          <div class="reviewer-card"><div class="reviewer-dot"></div><div class="reviewer-name">International Journal of Electrical and Computer Engineering (IJECE)</div></div>
+          <div class="reviewer-card"><div class="reviewer-dot"></div><div class="reviewer-name">Indonesian Journal of Electrical Engineering and Computer Science</div></div>
+          <div class="reviewer-card"><div class="reviewer-dot"></div><div class="reviewer-name">Applied Clinical Informatics</div></div>
+          <div class="reviewer-card"><div class="reviewer-dot"></div><div class="reviewer-name">International Journal of Artificial Intelligence (IAES)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Training Conducted</div>
+      <h2 class="section-title">Training Programs Conducted</h2>
+    </div>
+    <div class="training-list fade-up">
+      <div class="training-item"><div class="training-icon">📚</div><div class="training-text">Coordinated and conducted a <strong>Five-Day Workshop</strong> on "Inflibnet Regional Training Programme on Library Automation" from 04-05-2026 to 08-05-2026 in collaboration with the Department of Library Science and Information System.</div></div>
+      <div class="training-item"><div class="training-icon">🖥</div><div class="training-text">Conducted a <strong>One-Week Online "NEP Orientation & Sensitization Programme"</strong> in Collaboration with S.G.T.B. KHALSA COLLEGE, University of Delhi from 15th Dec-2025 to 24th Dec-2025.</div></div>
+      <div class="training-item"><div class="training-icon">📊</div><div class="training-text">Conducted a <strong>Two-Week Incentive Training Program for NCC JAWANS</strong> on Excel to Power BI from 22-01-2025 to 04-02-2025.</div></div>
+      <div class="training-item"><div class="training-icon">🤖</div><div class="training-text">Co-coordinated a <strong>Ten-Day Online FDP on "Artificial Intelligence in Internet of Things (AIoT)"</strong> from 22-07-2022 to 02-08-2022 in collaboration with E&ICT Academy, NITW.</div></div>
+      <div class="training-item"><div class="training-icon">🔬</div><div class="training-text">Conducted a <strong>UGC Sponsored National Workshop</strong> on "Design and Analysis of Algorithms" on December 29th and 30th – 2017.</div></div>
+      <div class="training-item"><div class="training-icon">📋</div><div class="training-text">Conducted a <strong>UGC Sponsored National Conference</strong> on "Current Research Advances in Computer Sciences CRACS-17" on March 17th and 18th – 2017. Published proceedings with ISBN: 978-93-5230-183-6.</div></div>
+      <div class="training-item"><div class="training-icon">🗂</div><div class="training-text">Co-coordinated a <strong>Two-Day UGC Sponsored Workshop</strong> on "Research Methodologies and Issues in Computer Science and Information Technology" from 27th March 2014 to 28th March 2014.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Leadership</div>
+      <h2 class="section-title">Administrative Experience</h2>
+    </div>
+    <div class="admin-list fade-up">
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>Executive Council Member & Head, Department of Computer Science</strong> — Kakatiya University, from 18th June 2024 to Present</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>Chairperson, Board of Studies in Computer Science</strong> — Kakatiya University, from Feb-06-2020 to Feb-03-2022</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>Director for Campus Network and Website</strong> — Kakatiya University, from September 2018 to 31-01-2022</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>Head, Department of Computer Science & Director for Computer Center</strong> — Kakatiya University, June 2016 to June 2018</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>Chair Person, BOS, Department of Computer Science</strong> — Kakatiya University, October 2013 to December 2015</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text"><strong>In-charge HOD for IT Department</strong> — Vaagdevi Engineering College, Bollikunta, Warangal</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Active Participation as <strong>BOS Member</strong> in Department of Computer Science, Shathavahana University, Karimnagar</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Subject Expert Member in BOS Member Committee for <strong>Chaithanya Degree and PG College (Autonomous)</strong>, Hanamkonda</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Active Participation as <strong>BOS Member</strong> in Department of Computer Science, Mahatma Gandhi University, Nalgonda</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Active Participation as <strong>BOS Member</strong> in Department of Computer Science, SR & BGNR Autonomous College, Khammam</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Active Member Convener in <strong>Departmental Committee</strong> since 2011</div></div>
+      <div class="admin-item"><div class="admin-indicator"></div><div class="admin-text">Contributed valuable services for conduction of <strong>International Conference on Vibration Problem</strong> in the Department of Mathematics, Feb 18–20</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag">Global Presence</div>
+      <h2 class="section-title">International Conferences Attended</h2>
+    </div>
+    <div class="conf-grid fade-up">
+      <div class="conf-card"><div class="conf-tag">IEEE · Dubai, UAE</div><div class="conf-name">IEEE International Conference on Infocom Technologies and Unnamed System (ICTUS 2017)</div><div class="conf-meta">Amity University, Dec 18-20, 2017</div></div>
+      <div class="conf-card"><div class="conf-tag">IEEE · Madurai, India</div><div class="conf-name">IEEE International Conference on Intelligent Computing and Control Systems (ICICCS-2017)</div><div class="conf-meta">Jun 15-16, 2017</div></div>
+      <div class="conf-card"><div class="conf-tag">IEEE · India</div><div class="conf-name">IEEE International Conference on Advances in Electrical, Electronics, Information, Communication and Bio-Informatics (AEEICB17)</div><div class="conf-meta">Feb 27-28, 2017</div></div>
+      <div class="conf-card"><div class="conf-tag">Springer AISC · Vijayawada</div><div class="conf-name">3rd International Conference on Computer & Communication Technologies (IC3T)</div><div class="conf-meta">MIC College of Technology, Nov 5-6, 2016</div></div>
+      <div class="conf-card"><div class="conf-tag">IEEE · Coimbatore</div><div class="conf-name">IEEE International Conference on Communication and Electronic Systems (ICCES2016)</div><div class="conf-meta">PPG Institute of Technology, Oct 21-22, 2016</div></div>
+      <div class="conf-card"><div class="conf-tag">National · Warangal</div><div class="conf-name">Next Generation Education for Entrepreneurial Engineers (ICNGE3)</div><div class="conf-meta">SR Engineering College, Mar 9-10, 2016</div></div>
+      <div class="conf-card"><div class="conf-tag">IEEE · India</div><div class="conf-name">2nd IEEE International Conference on Advances in Electrical, Information, Communication and Bio-Informatics (AEEICB-2016)</div><div class="conf-meta">Feb 27-28, 2016</div></div>
+      <div class="conf-card"><div class="conf-tag">International</div><div class="conf-name">Futuristic Trends in Engineering, Science, Humanities and Technology (FTESHP-16)</div><div class="conf-meta">Jan 23-24, 2016</div></div>
+      <div class="conf-card"><div class="conf-tag">National</div><div class="conf-name">International Conference titled "Next Generation Education for Entrepreneurial Engineers" (ICNGE2)</div><div class="conf-meta">SR Engineering College, Mar 10-11, 2014</div></div>
+      <div class="conf-card"><div class="conf-tag">International</div><div class="conf-name">International Conference on Information Technology and Real World Problems</div><div class="conf-meta">2009</div></div>
+      <div class="conf-card"><div class="conf-tag">National</div><div class="conf-name">National Conference on Intelligent Systems and Communications</div><div class="conf-meta">SPMVV, Tirupati, 2009</div></div>
+      <div class="conf-card"><div class="conf-tag">International</div><div class="conf-name">International Symposium on Information Technology and Real World Problems</div><div class="conf-meta">2008</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact" class="bg-alt">
+  <div class="container" style="max-width:800px; text-align:center;">
+    <div class="section-header fade-up" style="text-align:center;">
+      <div class="section-tag" style="justify-content:center;">Contact</div>
+      <h2 class="section-title">Get in Touch</h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.2rem; margin-top:2rem;" class="fade-up">
+      <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:1.8rem; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">✉️</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em;">Email</div>
+        <a href="mailto:rama.abbidi@gmail.com" style="color:var(--accent); text-decoration:none; font-size:0.9rem; font-weight:600;">rama.abbidi@gmail.com</a>
+      </div>
+      <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:1.8rem; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">📞</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em;">Phone</div>
+        <a href="tel:9849579453" style="color:var(--accent); text-decoration:none; font-size:0.9rem; font-weight:600;">+91 98495 79453</a>
+      </div>
+      <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:1.8rem; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">📍</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em;">Office</div>
+        <div style="color:var(--text); font-size:0.9rem; line-height:1.6;">Department of Computer Science<br>University College, Kakatiya University<br>Warangal – 506 009, Telangana</div>
+      </div>
+      <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:14px; padding:1.8rem; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">🔬</div>
+        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em;">Research Profiles</div>
+        <a href="https://scholar.google.co.in/citations?user=F-urIhkAAAAJ&hl=en" target="_blank" style="color:var(--teal-light); text-decoration:none; font-size:0.85rem; display:block;">Google Scholar ↗</a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=56702506200" target="_blank" style="color:var(--teal-light); text-decoration:none; font-size:0.85rem; display:block; margin-top:4px;">Scopus ↗</a>
+        <a href="https://orcid.org/0000-0003-2860-5602" target="_blank" style="color:var(--teal-light); text-decoration:none; font-size:0.85rem; display:block; margin-top:4px;">ORCID Profile ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Dr. B. Rama</div>
+  <div class="footer-sub">Associate Professor & Head, Dept. of Computer Science · Kakatiya University, Warangal</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#patents">Patents</a>
+    <a href="#publications">Publications</a>
+    <a href="#books">Books</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Dr. B. Rama. Academic Portfolio. All rights reserved.</div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // NAV MOBILE
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // SCROLL EFFECTS
+  window.addEventListener('scroll', () => {
+    const st = document.getElementById('scrollTop');
+    if (window.scrollY > 400) st.classList.add('visible');
+    else st.classList.remove('visible');
+  });
+
+  // INTERSECTION OBSERVER
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Stagger children
+        const children = e.target.querySelectorAll('.tl-item, .qual-card, .ach-card, .patent-card, .book-card, .award-item, .membership-card, .conf-card, .project-card, .training-item, .admin-item, .reviewer-card, .pub-item, .chart-container');
+        children.forEach((c, i) => {
+          c.style.transitionDelay = `${i * 0.04}s`;
+          c.style.opacity = '1';
+          c.style.transform = 'none';
+        });
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    // Set initial hidden state for children
+    el.querySelectorAll('.tl-item, .qual-card, .ach-card, .patent-card, .book-card, .award-item, .membership-card, .conf-card, .project-card, .training-item, .admin-item, .reviewer-card, .pub-item, .chart-container').forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(16px)';
+      c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    observer.observe(el);
+  });
+
+  // PUB TABS
+  function showPub(tab) {
+    document.querySelectorAll('.pub-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.pub-tab').forEach(el => el.classList.remove('active'));
+    document.getElementById('pub-' + tab).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // NAV ACTIVE ON SCROLL
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold-light)' : '';
+    });
+  });
+
+  // CHART.JS INITIALIZATION
+  document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('pubChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [{
+          label: 'Publications per Year',
+          data: [1, 1, 6, 10, 4, 5, 3, 1, 3, 2, 0, 4],
+          backgroundColor: 'rgba(200, 151, 42, 0.6)',
+          borderColor: 'rgba(200, 151, 42, 1)',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            labels: { color: '#e4eaf5', font: { family: "'DM Sans', sans-serif" } }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#8a9bb5', stepSize: 2 },
+            grid: { color: 'rgba(200, 151, 42, 0.1)' }
+          },
+          x: {
+            ticks: { color: '#8a9bb5' },
+            grid: { display: false }
+          }
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>
